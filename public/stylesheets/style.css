@@ -1,8 +1,110 @@
+/* Load fonts */
+
+@font-face {
+	src: url('../fonts/Roboto-Regular.ttf');
+	font-family: 'Roboto';
+}
+
+@font-face {
+	src: url('../fonts/OpenSans-Regular.ttf');
+	font-family: 'Open Sans';
+}
+
+/* General rules */
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0; /* Reset the browser's values */
+  padding: 0; /* Reset the browser's values */
+  background-color: #035096;
 }
 
 a {
-  color: #00B7FF;
+	text-decoration: none;
+	color: black;
+}
+
+/* menu */
+
+.menu {
+	background-color: #333;
+	padding: 3vh;
+	text-align: center;
+	font-family: 'Roboto';
+}
+
+.options {
+	display: inline-block;
+	list-style: none; /* Reset the browser's values */
+	margin: 0; /* Reset the browser's values */
+	padding: 0; /* Reset the browser's values */
+	max-width: 500px;
+	width: 100%;
+	transform: skewX(15deg);
+	-ms-transform: skewX(15deg); /* IE 9 - Edge */
+	-webkit:transform: skewX(15deg); /* Opera, Safari, Chrome */
+}
+
+.options a {
+	margin: 0 0.5vw;
+	max-width: 150px;
+	width: 100%;
+	display: inline-block;
+}
+
+.options li {
+	display: inline-block;
+}
+
+.skew {
+	display: inline-block;
+	padding: 0.5vw 0vw;
+	font-style: italic;
+	background-color: white;
+	max-width: 150px;
+	width: 100%;
+	transition: background-color 1s ease-in-out;
+}
+
+.skew:hover {
+	background-color: #035096;
+}
+
+.logo {
+	display: inline-block;
+	max-width: 150px;
+	width: 100%;
+	vertical-align: middle;
+	margin: 0 3vw;
+}
+
+.logo img {
+	max-width: 150px;
+	width: 100%;
+	margin: 1vw 0;
+}
+
+.btnPlay {
+	background-color: white;
+	font-style: italic;
+	padding: 0.5vw 0;
+	transform: skewX(15deg);
+	-ms-transform: skewX(15deg); /* IE 9 - Edge */
+	-webkit-transform: skewX(15deg); /* Opera, Safari, Chrome */
+	transition: background-color 1s ease-in-out;
+	-ms-transition: background-color 1s ease-in-out;
+	-webkit-transition: background-color 1s ease-in-out;
+}
+
+.btnPlay:hover {
+	background-color: yellow;
+}
+
+/* Index news */
+
+.news {
+	font-family: 'Open Sans';
+	max-width: 1024px;
+	width: 100%;
+	margin: 0 auto;
+
 }
