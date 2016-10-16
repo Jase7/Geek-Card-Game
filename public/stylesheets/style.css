@@ -26,8 +26,8 @@ a {
 /* menu */
 
 .menu {
-	background-color: #333;
-	padding: 3vh;
+	background-color: #111;
+	padding: 1.5vh;
 	text-align: center;
 	font-family: 'Roboto';
 }
@@ -39,13 +39,33 @@ a {
 	padding: 0; /* Reset the browser's values */
 	max-width: 500px;
 	width: 100%;
+}
+
+.optionsLeft {
+	transform: skewX(15deg);
+	-ms-transform: skewX(15deg); /* IE 9 - Edge */
+	-webkit:transform: skewX(15deg); /* Opera, Safari, Chrome */
+}
+
+.optionsLeft li {
+	transform: skewX(-15deg);
+	-ms-transform: skewX(-15deg); /* IE 9 - Edge */
+	-webkit:transform: skewX(-15deg); /* Opera, Safari, Chrome */
+}
+
+.optionsRight {
+	transform: skewX(-15deg);
+	-ms-transform: skewX(-15deg); /* IE 9 - Edge */
+	-webkit:transform: skewX(-15deg); /* Opera, Safari, Chrome */
+}
+
+.optionsRight li {
 	transform: skewX(15deg);
 	-ms-transform: skewX(15deg); /* IE 9 - Edge */
 	-webkit:transform: skewX(15deg); /* Opera, Safari, Chrome */
 }
 
 .options a {
-	margin: 0 0.5vw;
 	max-width: 150px;
 	width: 100%;
 	display: inline-block;
@@ -55,18 +75,29 @@ a {
 	display: inline-block;
 }
 
+.optionsLeft .skew {
+	box-shadow: inset #246ede 2px -2px 5px;
+}
+
+.optionsRight .skew {
+	box-shadow: inset #246ede -2px -2px 5px;
+}
+
 .skew {
 	display: inline-block;
 	padding: 0.5vw 0vw;
-	font-style: italic;
-	background-color: white;
+	background-color: #111;
+	color:#246ede;
 	max-width: 150px;
 	width: 100%;
-	transition: background-color 1s ease-in-out;
+	transition-property: background-color, color, box-shadow;
+	transition-duration: 1s;
 }
 
 .skew:hover {
-	background-color: #035096;
+	background-color: #246ede;
+	color: #111;
+	box-shadow: inset #111 -2px -2px 5px;
 }
 
 .logo {
@@ -74,29 +105,18 @@ a {
 	max-width: 150px;
 	width: 100%;
 	vertical-align: middle;
-	margin: 0 3vw;
+	margin: 0 2vw;
 }
 
 .logo img {
 	max-width: 150px;
 	width: 100%;
-	margin: 1vw 0;
+	margin: 0.5vw 0;
 }
 
 .btnPlay {
-	background-color: white;
-	font-style: italic;
-	padding: 0.5vw 0;
-	transform: skewX(15deg);
-	-ms-transform: skewX(15deg); /* IE 9 - Edge */
-	-webkit-transform: skewX(15deg); /* Opera, Safari, Chrome */
-	transition: background-color 1s ease-in-out;
-	-ms-transition: background-color 1s ease-in-out;
-	-webkit-transition: background-color 1s ease-in-out;
-}
-
-.btnPlay:hover {
-	background-color: yellow;
+	background-color: #EFE434;
+	color: #111;
 }
 
 /* Index news */

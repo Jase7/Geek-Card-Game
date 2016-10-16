@@ -1,0 +1,36 @@
+.bg-login {
+	background-image: url('/images/web/login-bg.jpg');
+	background-size: cover;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	-webkit-filter: blur(10px);
+	-ms-filter: blur(10px);
+	filter: blur(10px);
+}
+
+.login {
+	position: relative;
+	max-width: 960px;
+	width: 100%;
+	margin: 1vh auto;
+	padding: 3vw;
+	text-align: center;
+	background-color: white;
+	border-radius: 10px;
+	font-family: 'Open Sans';
+}
+
+.loginTitle {
+	font-family: 'Roboto';
+	font-size: 2vw;
+	margin: 1vw 0;
+}
+
+.loginForm {
+	margin: 1vw 0;
+}
+
+.loginForm input {
+	font-size: 1.2vw;
+}

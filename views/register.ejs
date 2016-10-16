@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Registro</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/register.css" />
+	<script src="/javascripts/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="/javascripts/checkRegister.js" type="text/javascript" charset="utf-8" ></script>
+
+  
+</head>
+<body>
+
+<% include header.ejs %>
+
+<div class="bg-blur bg-register"></div>
+
+	<div class="register">
+		<span class="registerTitle">Registrarse en Geek Card Game</span>
+		<form action="/register" method="POST" accept-charset="utf-8" class="registerForm">
+			<label for="user">Introduce un nombre de usuario válido:</label>
+			<input type="text" name="user" placeholder="Usuario" required /><br />
+			<label for="email">Introduce un email válido:</label>
+			<input type="email" name="email" placeholder="E-mail" required /><br />
+			<label for="pass">Introduce una contraseña (min. 5 caracteres):</label>
+			<input type="password" name="pass" placeholder="Contraseña" required pattern=".{5,}" oninvalid="setCustomValidity('La contraseña debe contener al menos 5 caracteres.')" oninput="setCustomValidity('')" /><br />
+			<label for="repeat_pass">Vuelve a introducir la contraseña, por favor:</label>
+			<input type="password" name="repeat_pass" placeholder="Repite la contraseña" required pattern=".{5,}" /><br />
+			<input type="submit" name="send" value="Iniciar sesión" class="btnLogin" />
+		</form>
+	</div>	
+	
+</body>
+</html>

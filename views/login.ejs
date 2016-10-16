@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Iniciar sesión</title>
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/login.css" />
+</head>
+<body>
+
+	<% include header.ejs %>
+
+	<div class="bg-blur bg-login"></div>
+
+	<div class="login">
+		<span class="loginTitle">Iniciar sesión en Geek Card Game</span>
+		<form action="/login" method="POST" accept-charset="utf-8" class="loginForm">
+			<input type="text" name="user" placeholder="Usuario" /><br />
+			<input type="password" name="pass" placeholder="Contraseña" /><br />
+			<input type="checkbox" name="remember"><span class="remember">Recordar contraseña</span><br />
+			<input type="submit" name="send" value="Iniciar sesión" class="btnLogin" />
+		</form>
+	</div>	
+</body>
+</html>
