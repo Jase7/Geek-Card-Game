@@ -1,3 +1,23 @@
+label {
+	display: inline-block;
+	width: 350px;
+	text-align: right;
+	font-size: 1vw;
+}
+
+input {
+	max-width: 300px;
+	width: 100%;
+	border: none;
+	background-color: #CCC;
+	padding: 0.7vw;
+	margin: 0.5vw 0;
+}
+
+input[type=submit] {
+	cursor: pointer;
+}
+
 .bg-login {
 	background-image: url('/images/web/login-bg.jpg');
 	background-size: cover;
@@ -24,13 +44,8 @@
 .loginTitle {
 	font-family: 'Roboto';
 	font-size: 2vw;
-	margin: 1vw 0;
 }
 
 .loginForm {
 	margin: 1vw 0;
-}
-
-.loginForm input {
-	font-size: 1.2vw;
 }

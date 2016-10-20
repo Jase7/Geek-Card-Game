@@ -14,21 +14,33 @@ $(document).ready(function() {
     });
 
     /* Let's check if user and email are available */
-    $.$.ajax({
-        url: '/path/to/file',
-        type: 'default GET (Other values: POST)',
-        dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-        data: {param1: 'value1'},
-    })
-    .done(function() {
-        console.log("success");
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
-    
+    $('input[name=user]').keyup(function(event) {
 
+        if ($(this).val().length >= 4) {
+
+            $.ajax({
+            url: '/checkUser',
+            type: 'POST',
+            data: $('form').serialize(),
+            })
+            .done(function(data) {
+
+                if(data === 'valid') {
+                    $('.isUserValid').html('<i class="fa fa-check-circle" aria-hidden="true"></i>');
+                }
+
+                else if(data === 'invalid') {
+                    $('.isUserValid').html('<i class="fa fa-times-circle" aria-hidden="true"></i>');
+                }
+                
+            })
+            .fail(function(err) {
+                console.log(err);
+            });
+
+        }
+
+        
+        
+    });    
 })
