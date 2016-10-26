@@ -26,11 +26,11 @@ $(document).ready(function() {
             .done(function(data) {
 
                 if(data === 'valid') {
-                    $('.isUserValid').html('<i class="fa fa-check-circle" aria-hidden="true"></i>');
+                    $('.isUserValid').html('<i class="icon-valid" aria-hidden="true"></i>');
                 }
 
                 else if(data === 'invalid') {
-                    $('.isUserValid').html('<i class="fa fa-times-circle" aria-hidden="true"></i>');
+                    $('.isUserValid').html('<i class="icon-invalid" aria-hidden="true"></i>');
                 }
                 
             })

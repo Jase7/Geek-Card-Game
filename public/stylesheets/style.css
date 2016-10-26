@@ -13,9 +13,9 @@
 /* General rules */
 
 body {
-  margin: 0; /* Reset the browser's values */
-  padding: 0; /* Reset the browser's values */
-  background-color: #035096;
+	margin: 0; /* Reset the browser's values */
+	padding: 0; /* Reset the browser's values */
+	background-color: #261911;
 }
 
 a {
@@ -26,7 +26,10 @@ a {
 /* menu */
 
 .menu {
-	background-color: #111;
+	background: url('/images/web/background.png');
+	background-size: 100% 100%;
+	background-position: top center;
+	background-repeat: no-repeat;
 	padding: 1.5vh;
 	text-align: center;
 	font-family: 'Roboto';
@@ -37,7 +40,7 @@ a {
 	list-style: none; /* Reset the browser's values */
 	margin: 0; /* Reset the browser's values */
 	padding: 0; /* Reset the browser's values */
-	max-width: 500px;
+	max-width: 400px;
 	width: 100%;
 }
 
@@ -75,23 +78,16 @@ a {
 	display: inline-block;
 }
 
-.optionsLeft .skew {
-	box-shadow: inset #246ede 2px -2px 5px;
-}
-
-.optionsRight .skew {
-	box-shadow: inset #246ede -2px -2px 5px;
-}
-
 .skew {
 	display: inline-block;
 	padding: 0.5vw 0vw;
-	background-color: #111;
-	color:#246ede;
+	background-color: #FEC23E;
+	color: black;
 	max-width: 150px;
 	width: 100%;
 	transition-property: background-color, color, box-shadow;
 	transition-duration: 1s;
+	border: 3px solid #EFA400;
 }
 
 .skew:hover {
@@ -115,16 +111,14 @@ a {
 }
 
 .btnPlay {
-	background-color: #EFE434;
-	color: #111;
+	background: url('/images/web/button_play.png') center;
+	display: inline-block;
+	background-size: contain;
+	background-repeat: no-repeat;
+	max-width: 200px;
+	width: 100%;
 }
 
-/* Index news */
-
-.news {
-	font-family: 'Open Sans';
-	max-width: 1024px;
-	width: 100%;
-	margin: 0 auto;
-
+.divPlay {
+	padding: 1vw;
 }

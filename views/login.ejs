@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Iniciar sesión</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Iniciar sesión</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/login.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+	<script src="/javascripts/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
 
-	<% include header.ejs %>
-
-	<div class="bg-blur bg-login"></div>
-
+<div class="container">
 	<div class="login">
 		<span class="loginTitle">Iniciar sesión en Geek Card Game</span>
-		<form action="/login" method="POST" accept-charset="utf-8" class="loginForm">
-			<input type="text" name="user" placeholder="Usuario" /><br />
-			<input type="password" name="pass" placeholder="Contraseña" /><br />
-			<input type="checkbox" name="remember"><span class="remember">Recordar contraseña</span><br />
-			<input type="submit" name="send" value="Iniciar sesión" class="btnLogin" />
+		<form action="/" method="POST" accept-charset="utf-8" class="loginForm">
+			
+	    	<div class="inputBlock">
+	       		<label for="user">Usuario</label>     	
+	       		<input type="text" name="user" id="user" placeholder="Usuario" />	 
+	        </div> 	
+
+	        <div class="inputBlock">	
+		 		<label for="pass">Contraseña</label>
+		 		<input type="password" name="pass" id="pass" placeholder="Contraseña" />
+		 	</div>
+
+		 	<div class="inputBlock">
+				<input type="checkbox" name="remember"><span class="remember">Recordar contraseña</span>
+			</div>
+
+			<div class="inputBlock">
+				<div class="btnLogin">
+					<input type="submit" name="send" value="Iniciar sesión"/>
+				</div>
+			</div>
+			
 		</form>
 	</div>	
+</div>
+
 </body>
 </html>

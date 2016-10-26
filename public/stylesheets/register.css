@@ -50,10 +50,10 @@ input[type=submit] {
 	margin: 1vw 0;
 }
 
-.fa-check-circle {
+.icon-valid {
 	color: green;
 }
 
-.fa-times-circle {
+.icon-invalid {
 	color: red;
 }

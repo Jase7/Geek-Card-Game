@@ -1,10 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var bcrypt = require('bcrypt-nodejs');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-  res.render('login', {});
+
+	if (!req.session.user) {
+		res.redirect('/news');
+	}
+
+	else {
+		res.render('login', {});
+	}
+  		
 });
 
 /* POST login page. */
@@ -29,39 +38,37 @@ router.post('/', function(req, res, next) {
 
 	var user = req.body.user;
 	var pass = req.body.pass;
+	var remember = req.body.remember;
 
-	var query = connection.query('SELECT * FROM users WHERE strUsername = (?) AND strPassword = (?)'
-		, [user, pass]
+	//Save password
+	var query = connection.query('SELECT * FROM users WHERE strUsername = (?)'
+		, [user]
 
-		, function(error, result){
+		, function(error, result, fields){
 			   	if (error) {
 			   		throw error;
 			   	}
 
 			   	else {
-			   		
-			    	if (result.length > 0) {
 
-			    		req.session.user = req.body.user;
+			   		var hash = result[0].strPassword;
 
-			      			
-				      	res.cookie('user', req.session.user, { expires: new Date(Date.now() + 90000 * 90000) })
-				      	.render('login', {
-				      		user: req.session.user
-				      	})
-			    	}
+			   		bcrypt.compare(pass, hash, function(err, resp) {
 
-			    	else {
-			    		res.render('login', {
-			    			user: undefined
-			    		})
-			    	}
+			   			if (err) {
+			   				console.log(err);
+			   			}
+
+			   			if (resp) {
+			   				req.session.user = user;
+			   				res.render('news', {user: req.session.user})	
+			   			}
+					});			   		
 			   }
 		}
 	);
 
 	connection.end(); 
-
 
 });
 

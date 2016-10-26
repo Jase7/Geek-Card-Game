@@ -5,11 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var checkUser = require('./routes/checkUser');
+var news = require('./routes/news');
 
 var app = express();
 
@@ -25,11 +27,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
+app.use(session({
+                secret: 'abcd1234',
+                resave: false,
+                saveUninitialized: true
+              }));
 
-app.use('/', index);
-app.use('/login', login);
+//Routes
+app.use('/', login);
+app.use('/news', news);
 app.use('/register', register);
 app.use('/checkUser', checkUser);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
 	connection.connect(function(error){
 
 	   if(error){
-	      throw error;
+	      console.log(error);
 	   } else{
 	      console.log('Conexion correcta.');
 	   }
@@ -33,14 +33,14 @@ router.post('/', function(req, res, next) {
 
 	var user = req.body.user;
 	var email = req.body.email;
-	var pass = bcrypt.hashSync(req.body.pass);;
+	var pass = req.body.pass;
 	var currentTime = new Date();
 	var hashLogin = hash.generate(Math.random().toString(36).substring(50));
 
-	
+	bcrypt.hash(pass, null, null, function(err, hash) {
 
-	var query = connection.query('INSERT INTO users (strUsername, strEmail, strPassword, datRegisterDate, strRegisterHash) VALUES(?, ?, ?, NOW(), ?)'
-		, [user, email, pass, hashLogin]
+		var query = connection.query('INSERT INTO users (strUsername, strEmail, strPassword, datRegisterDate, strRegisterHash) VALUES(?, ?, ?, NOW(), ?)'
+		, [user, email, hash, hashLogin]
 
 		, function(error, result){
 			   	if (error) {
@@ -48,13 +48,20 @@ router.post('/', function(req, res, next) {
 			   	}
 
 			   	else {
-			    	res.render('register', {});
+
+			    	res.redirect('/', {});
 			   }
 		}
 	);
 
 	connection.end(); 
 
-})
+	})
+    	
+});
+
+	
+
+	
 
 module.exports = router;
