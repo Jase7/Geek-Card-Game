@@ -6,9 +6,14 @@ var bcrypt = require('bcrypt-nodejs');
 /* GET login page. */
 router.get('/', function(req, res, next) {
 
-	if (!req.session.user) {
+	if (req.session.user) {
 		res.redirect('/news');
 	}
+
+	else if (req.cookies.user) {
+
+		res.redirect('/news');
+	}	
 
 	else {
 		res.render('login', {});
@@ -60,8 +65,21 @@ router.post('/', function(req, res, next) {
 			   			}
 
 			   			if (resp) {
-			   				req.session.user = user;
-			   				res.render('news', {user: req.session.user})	
+
+			   				//If cookies are enabled 
+			   				if (remember == 'on') {
+
+			   					//Create a cookie with the session of the user
+			   					req.session.user = user;
+
+			   					res.cookie('user', req.session.user, { expires: new Date(Date.now() + 90000 * 90000) })
+				      			.redirect('/news');
+			   				}
+			   				
+			   				else {
+			   					req.session.user = user;
+			   					res.redirect('/news')	
+			   				}
 			   			}
 					});			   		
 			   }

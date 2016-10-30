@@ -12,26 +12,33 @@
 	<script src="/javascripts/checkRegister.js" type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
-
-<% include header.ejs %>
-
 	<div class="register">
 		<span class="registerTitle">Registrarse en Geek Card Game</span>
 		<form action="/register" method="POST" accept-charset="utf-8" class="registerForm">
-			<label for="user">Introduce un nombre de usuario válido:</label>
-			<input type="text" name="user" id="user" placeholder="Usuario" required />
-			<span class="isUserValid"></span>
+		
+			<div  class="inputBlock">
+				<label for="user">Introduce un nombre de usuario válido:</label>
+				<input type="text" name="user" id="user" placeholder="Usuario" required />
+				<span class="isUserValid"></span>
+			</div>
 
-			<label for="email">Introduce un email válido:</label>
-			<input type="email" name="email" placeholder="E-mail" required />
-			<span class="isEmailValid"></span>
+			<div class="inputBlock">
+				<label for="email">Introduce un email válido:</label>
+				<input type="email" name="email" placeholder="E-mail" required />
+				<span class="isEmailValid"></span>
+			</div>
 
 
-			<label for="pass">Introduce una contraseña (min. 5 caracteres):</label>
-			<input type="password" name="pass" placeholder="Contraseña" required pattern=".{5,}" oninvalid="setCustomValidity('La contraseña debe contener al menos 5 caracteres.')" oninput="setCustomValidity('')" />
+			<div class="inputBlock">
+				<label for="pass">Introduce una contraseña (min. 5 caracteres):</label>
+				<input type="password" name="pass" placeholder="Contraseña" required pattern=".{5,}" oninvalid="setCustomValidity('La contraseña debe contener al menos 5 caracteres.')" oninput="setCustomValidity('')" />
+			</div>
 
-			<label for="repeat_pass">Vuelve a introducir la contraseña, por favor:</label>
-			<input type="password" name="repeat_pass" placeholder="Repite la contraseña" required pattern=".{5,}" />
+			<div class="inputBlock">
+				<label for="repeat_pass">Vuelve a introducir la contraseña, por favor:</label>
+				<input type="password" name="repeat_pass" placeholder="Repite la contraseña" required pattern=".{5,}">
+			</div>
+
 			<input type="submit" name="send" value="¡Regístrate!" class="btnLogin" />
 		</form>
 	</div>	

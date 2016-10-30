@@ -4,10 +4,9 @@
 	<title>Iniciar sesión</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
-	<script src="/javascripts/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
 
@@ -18,27 +17,28 @@
 			
 	    	<div class="inputBlock">
 	       		<label for="user">Usuario</label>     	
-	       		<input type="text" name="user" id="user" placeholder="Usuario" />	 
+	       		<input type="text" name="user" id="user" placeholder="Usuario" required/>	 
 	        </div> 	
 
 	        <div class="inputBlock">	
 		 		<label for="pass">Contraseña</label>
-		 		<input type="password" name="pass" id="pass" placeholder="Contraseña" />
+		 		<input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
 		 	</div>
 
 		 	<div class="inputBlock">
-				<input type="checkbox" name="remember"><span class="remember">Recordar contraseña</span>
+				<span>Recordar contraseña</span><input type="checkbox" name="remember" id="remember">
+				<label for="remember" class="remember"></label>
 			</div>
 
 			<div class="inputBlock">
 				<div class="btnLogin">
 					<input type="submit" name="send" value="Iniciar sesión"/>
 				</div>
-			</div>
-			
+			</div>			
 		</form>
+
+		<a href="/register" title="Registro">¿Aún no tienes cuenta? ¡Regístrate!</a>
 	</div>	
 </div>
-
 </body>
 </html>

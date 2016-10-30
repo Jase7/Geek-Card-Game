@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require('mysql');
 var hash = require("password-hash");
 var bcrypt = require('bcrypt-nodejs');
+var nodemailer = require('nodemailer');
 var router = express.Router();
 
 /* GET register page. */
@@ -44,12 +45,42 @@ router.post('/', function(req, res, next) {
 
 		, function(error, result){
 			   	if (error) {
-			   		throw error;
+			   		console.log(error);
 			   	}
 
 			   	else {
+			   		//SMTP Config
+			   		var smtpConfig = {
+					    host: 'smtp.gmail.com',
+					    port: 465,
+					    secure: true, // use SSL 
+					    auth: {
+					        user: 'user@gmail.com',
+					        pass: 'pass'
+					    }
+					};
 
-			    	res.redirect('/', {});
+			   		// create reusable transporter object using the default SMTP transport 
+			   		var transporter = nodemailer.createTransport(smtpConfig);
+
+			   		// setting some options
+			   		var mailOptions = {
+					    from: '"Geek Card Game" <admin@geekcardgame>', // sender address 
+					    to: email, // list of receivers 
+					    subject: 'Geek Card Game', // Subject line 
+					    text: 'Geek Card Game', // plaintext body 
+					    html: '<b>Te has registrado en Geek Card Game :)</b>' // html body 
+					};
+
+					// send mail with defined transport object 
+					transporter.sendMail(mailOptions, function(error, info){
+					    if(error){
+					        return console.log(error);
+					    }
+					    console.log('Message sent: ' + info.response);
+					});
+
+			    	res.redirect('/');
 			   }
 		}
 	);
@@ -58,10 +89,6 @@ router.post('/', function(req, res, next) {
 
 	})
     	
-});
-
-	
-
-	
+});	
 
 module.exports = router;

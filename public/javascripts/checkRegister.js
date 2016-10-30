@@ -16,6 +16,10 @@ $(document).ready(function() {
     /* Let's check if user and email are available */
     $('input[name=user]').keyup(function(event) {
 
+        if($(this).val().length == 0) {
+            $('.isUserValid').css('display', 'none');
+        }
+
         if ($(this).val().length >= 4) {
 
             $.ajax({
@@ -26,11 +30,13 @@ $(document).ready(function() {
             .done(function(data) {
 
                 if(data === 'valid') {
-                    $('.isUserValid').html('<i class="icon-valid" aria-hidden="true"></i>');
+                    $('.isUserValid').css('display', "inline-block");
+                    $('.isUserValid').html('<i class="icon-valid" aria-hidden="true" title="Disponible"></i>');
                 }
 
                 else if(data === 'invalid') {
-                    $('.isUserValid').html('<i class="icon-invalid" aria-hidden="true"></i>');
+                    $('.isUserValid').css('display', "inline-block");
+                    $('.isUserValid').html('<i class="icon-invalid" aria-hidden="true" title="No disponible"></i>');
                 }
                 
             })

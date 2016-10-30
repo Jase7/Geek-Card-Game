@@ -15,110 +15,111 @@
 body {
 	margin: 0; /* Reset the browser's values */
 	padding: 0; /* Reset the browser's values */
-	background-color: #261911;
+	background-color: #472A19;
 }
 
 a {
 	text-decoration: none;
 	color: black;
+	text-transform: uppercase;
 }
 
 /* menu */
 
 .menu {
-	background: url('/images/web/background.png');
+	display: flex;
+	padding: 0 2em;
+	background: url('/images/web/background.png') no-repeat center center;
 	background-size: 100% 100%;
-	background-position: top center;
-	background-repeat: no-repeat;
-	padding: 1.5vh;
-	text-align: center;
-	font-family: 'Roboto';
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
 .options {
-	display: inline-block;
-	list-style: none; /* Reset the browser's values */
-	margin: 0; /* Reset the browser's values */
-	padding: 0; /* Reset the browser's values */
-	max-width: 400px;
-	width: 100%;
+	padding: 2em 0 0 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	align-items: flex-start;
 }
-
-.optionsLeft {
-	transform: skewX(15deg);
-	-ms-transform: skewX(15deg); /* IE 9 - Edge */
-	-webkit:transform: skewX(15deg); /* Opera, Safari, Chrome */
-}
-
-.optionsLeft li {
-	transform: skewX(-15deg);
-	-ms-transform: skewX(-15deg); /* IE 9 - Edge */
-	-webkit:transform: skewX(-15deg); /* Opera, Safari, Chrome */
-}
-
-.optionsRight {
-	transform: skewX(-15deg);
-	-ms-transform: skewX(-15deg); /* IE 9 - Edge */
-	-webkit:transform: skewX(-15deg); /* Opera, Safari, Chrome */
-}
-
-.optionsRight li {
-	transform: skewX(15deg);
-	-ms-transform: skewX(15deg); /* IE 9 - Edge */
-	-webkit:transform: skewX(15deg); /* Opera, Safari, Chrome */
-}
-
-.options a {
-	max-width: 150px;
-	width: 100%;
-	display: inline-block;
+.skew {
+	background-color: #FEC23E;
+	padding: 0;
+	margin: 0 1em;
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	box-shadow: 0 0 0 3px #000,
+				0 0 0 7px #EFA400,
+				0 0 0 10px #000;
 }
 
 .options li {
-	display: inline-block;
+	display: flex;
+	flex:auto;
+
 }
 
-.skew {
-	display: inline-block;
-	padding: 0.5vw 0vw;
-	background-color: #FEC23E;
-	color: black;
-	max-width: 150px;
-	width: 100%;
-	transition-property: background-color, color, box-shadow;
-	transition-duration: 1s;
-	border: 3px solid #EFA400;
+.options a {
+	flex: auto;
+	display: flex;
+	justify-content: center;
+	padding: 0.3em 0;
 }
 
-.skew:hover {
-	background-color: #246ede;
-	color: #111;
-	box-shadow: inset #111 -2px -2px 5px;
+.optionsLeft {
+	flex: 1 1 40%;
+	justify-content: flex-start;
+}
+
+
+.optionsRight {
+	flex: 1 1 40%;
+	justify-content: center;
+}
+
+.optionsLeft .skew {
+	transform: skewX(15deg);
+}
+
+.optionsLeft .skew li {
+	transform: skewX(-15deg);
+}
+
+.optionsRight .skew {
+	transform: skewX(-15deg);
+}
+
+.optionsRight .skew li {
+	transform: skewX(15deg);
 }
 
 .logo {
-	display: inline-block;
-	max-width: 150px;
-	width: 100%;
-	vertical-align: middle;
-	margin: 0 2vw;
+	flex: 1 1 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: .5em 0 0 0;
 }
 
 .logo img {
-	max-width: 150px;
-	width: 100%;
-	margin: 0.5vw 0;
+	width: 75%;
 }
 
-.btnPlay {
-	background: url('/images/web/button_play.png') center;
-	display: inline-block;
-	background-size: contain;
-	background-repeat: no-repeat;
-	max-width: 200px;
-	width: 100%;
-}
 
 .divPlay {
-	padding: 1vw;
+	background: url('/images/web/button_play.png') no-repeat center center;
+	background-size: 100% 100%;
+	width: 80%;
+	display: flex;
+	text-align: center;
+	position: relative;
+	top: 1em;
+}
+
+.divPlay a {
+	flex: auto;
+	padding: .9em 0;
 }
