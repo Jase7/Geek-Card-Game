@@ -16,16 +16,16 @@ module.exports = router;
 router.post('/', function(req, res, next) {
 
 	var connection = mysql.createConnection({
-	   host: 'localhost',
-	   user: 'root',
-	   password: '',
-	   database: 'geekcardgame',
-	   port: 3306
+		host: config.hostname,
+		user: config.user,
+		password: config.pass,
+		database: config.database,
+		port: config.port
 	});
 
 	connection.connect(function(error){
 
-	   if(error){
+	   if (error){
 	      console.log(error);
 	   } else{
 	      console.log('Conexion correcta.');

@@ -1,16 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var config = require('../config');
 
 /* POST login page. */
 router.post('/', function(req, res, next) {
   
 	var connection = mysql.createConnection({
-	   host: 'localhost',
-	   user: 'root',
-	   password: '',
-	   database: 'geekcardgame',
-	   port: 3306
+		host: config.hostname,
+		user: config.user,
+		password: config.pass,
+		database: config.database,
+		port: config.port
 	});
 
 	connection.connect(function(error){

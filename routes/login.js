@@ -25,11 +25,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   
 	var connection = mysql.createConnection({
-	   host: 'localhost',
-	   user: 'root',
-	   password: '',
-	   database: 'geekcardgame',
-	   port: 3306
+	   host: config.hostname,
+		user: config.user,
+		password: config.pass,
+		database: config.database,
+		port: config.port
 	});
 
 	connection.connect(function(error){

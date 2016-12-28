@@ -9,6 +9,17 @@
 <body>
 
 <% include header.ejs %>
+
+<div class="container">
+	
+	<% for (var i = 0; i < news.length; i++) { %>
+		<article>
+			<div class="title"><%= news[i].title %></div>
+			<div class="body"><%= news[i].body %></div>
+		<article>
+	<% } %>
+	
+</div>
 	
 </body>
 </html>
