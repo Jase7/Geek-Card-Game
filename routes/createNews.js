@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-	//Create the con
+	//Create the conn
 	var connection = mysql.createConnection({
 		host: config.hostname,
 		user: config.user,
@@ -54,9 +54,11 @@ router.post('/', function(req, res, next) {
 
 	var title = req.body.title;
 	var body = req.body.body;
+	var img = req.files.img;
+	var imgUrl = uploadImg(img);
 
-	var query = connection.query('INSERT INTO news (title, body) VALUES (?, ?)'
-		,[title, body]
+	var query = connection.query('INSERT INTO news (title, body, imgUrl) VALUES (?, ?, ?)'
+		,[title, body, imgUrl]
 
 		,function(error, result) {
 
@@ -69,9 +71,36 @@ router.post('/', function(req, res, next) {
 			}
 		}
 
-		);
+	);
 
+	function uploadImg (img) {
 
+		var fs = require('fs');
+		var tmpPath = img.path; //File's path from our computer
+		var name = img.name; //Files's name
+		var uploadFolder = __dirname + '/../public/images/uploads/news/' + name; //Path in our server
+
+		//Check if they're trying to upload images :)
+		if (img.type.indexOf('image') == -1) {
+			res.send('No has enviado una imagen, vuelve atrás y recarga')
+		}
+
+		else {
+
+			//Upload the file
+			fs.rename(tmpPath, uploadFolder, function(err) {
+
+				if (err) {
+					console.log(err);
+				}
+
+				else {
+				}
+			})
+
+			return '/images/uploads/news/' + name;
+		}	
+	}
 
 });
 

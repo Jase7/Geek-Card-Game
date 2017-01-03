@@ -14,6 +14,7 @@
 	
 	<% for (var i = 0; i < news.length; i++) { %>
 		<article>
+			<div class="new-img"><img src="<%= news[i].imgUrl %>"></div>
 			<div class="title"><%= news[i].title %></div>
 			<div class="body"><%= news[i].body %></div>
 		<article>

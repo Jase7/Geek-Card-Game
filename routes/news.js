@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 		}
 	})
 
-	var query = connection.query('SELECT title, body FROM news'
+	var query = connection.query('SELECT title, body, imgUrl FROM news'
 		, function(error, result) {
 
 			if (error) {

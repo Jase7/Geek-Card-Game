@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var session = require('express-session');
 var methodOverride = require('method-override');
+var multipart = require('connect-multiparty');
 
 var login = require('./routes/login');
 var register = require('./routes/register');
@@ -36,6 +37,7 @@ app.use(session({
                 resave: false,
                 saveUninitialized: true
               }));
+app.use(multipart());
 
 //Routes
 app.use('/', login);
