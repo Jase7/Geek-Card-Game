@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
+var config = require('../config');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
