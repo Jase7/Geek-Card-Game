@@ -13,6 +13,7 @@
     "debug": "~2.2.0",
     "ejs": "^2.5.2",
     "express": "~4.13.1",
+    "express-sanitizer": "^1.0.1",
     "express-session": "^1.14.1",
     "helmet": "^2.3.0",
     "method-override": "^2.3.6",

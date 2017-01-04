@@ -4,6 +4,7 @@ var hash = require("password-hash");
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 var router = express.Router();
+var config = require('../config');
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
@@ -32,9 +33,9 @@ router.post('/', function(req, res, next) {
 	   }
 	});
 
-	var user = req.body.user;
-	var email = req.body.email;
-	var pass = req.body.pass;
+	var user = req.sanitize(req.body.user);
+	var email = req.sanitize(req.body.email);
+	var pass = req.sanitize(req.body.pass);
 	var currentTime = new Date();
 	var hashLogin = hash.generate(Math.random().toString(36).substring(50));
 
@@ -49,7 +50,7 @@ router.post('/', function(req, res, next) {
 			   	}
 
 			   	else {
-			   		//SMTP Config
+			   		/*//SMTP Config
 			   		var smtpConfig = {
 					    host: 'smtp.gmail.com',
 					    port: 465,
@@ -78,7 +79,7 @@ router.post('/', function(req, res, next) {
 					        return console.log(error);
 					    }
 					    console.log('Message sent: ' + info.response);
-					});
+					});*/
 
 			    	res.redirect('/');
 			   }

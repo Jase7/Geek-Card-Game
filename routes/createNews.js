@@ -52,8 +52,8 @@ router.post('/', function(req, res, next) {
 	   }
 	});
 
-	var title = req.body.title;
-	var body = req.body.body;
+	var title = req.sanitize(req.body.title);
+	var body = req.sanitize(req.body.body);
 	var img = req.files.img;
 	var imgUrl = uploadImg(img);
 

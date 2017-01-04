@@ -8,6 +8,7 @@ var helmet = require('helmet');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var multipart = require('connect-multiparty');
+var expressSanitizer = require('express-sanitizer');
 
 var login = require('./routes/login');
 var register = require('./routes/register');
@@ -38,6 +39,7 @@ app.use(session({
                 saveUninitialized: true
               }));
 app.use(multipart());
+app.use(expressSanitizer());
 
 //Routes
 app.use('/', login);

@@ -41,8 +41,8 @@ router.post('/', function(req, res, next) {
 	   }
 	});
 
-	var user = req.body.user;
-	var pass = req.body.pass;
+	var user = req.sanitize(req.body.user);
+	var pass = req.sanitize(req.body.pass);
 	var remember = req.body.remember;
 
 	//Save password
@@ -78,6 +78,7 @@ router.post('/', function(req, res, next) {
 			   				
 			   				else {
 			   					req.session.user = user;
+			   					req.session.admin = is_admin;
 			   					res.redirect('/news')	
 			   				}
 			   			}

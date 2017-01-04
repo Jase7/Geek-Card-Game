@@ -6,7 +6,6 @@ var config = require('../config');
 /* GET news page. */
 router.get('/', function(req, res, next) {
 
-
 	var connection = mysql.createConnection({
 		host: config.hostname,
 		user: config.user,
