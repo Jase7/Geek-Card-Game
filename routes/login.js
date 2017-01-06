@@ -73,7 +73,7 @@ router.post('/', function(req, res, next) {
 			   					//Create a cookie with the session of the user
 			   					req.session.user = user;
 
-			   					res.cookie('user', req.session.user, { expires: new Date(Date.now() + 90000 * 90000) })
+			   					res.cookie('user', req.session.user, { expires: new Date(Date.now() + 90000 * 90000), httpOnly: true, secure: true})
 				      			.redirect('/news');
 			   				}
 			   				

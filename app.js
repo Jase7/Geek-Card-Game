@@ -37,7 +37,10 @@ app.use(methodOverride('_method'));
 app.use(session({
                 secret: 'abcd1234',
                 resave: false,
-                saveUninitialized: true
+                saveUninitialized: true,
+                httpOnly: true,
+                secure: true,
+                ephemeral: true
               }));
 app.use(multipart());
 app.use(expressSanitizer());
