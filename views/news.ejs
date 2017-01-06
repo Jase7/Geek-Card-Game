@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Noticias</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/news.css">
 	<meta name="description" content="Geek Card Game es un juego de cartas multijugador">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,10 +16,11 @@
 <div class="container">
 	
 	<% for (var i = 0; i < news.length; i++) { %>
-		<article>
-			<div class="new-img"><img src="<%= news[i].imgUrl %>"></div>
-			<div class="title"><%= news[i].title %></div>
-			<div class="body"><%- news[i].body %></div>
+		<article class="new-container" style="background-image: url(<%= news[i].imgUrl %>); background-size: 100% 100%">
+			<div class=new-content">
+				<div class="new-title"><%= news[i].title %></div>
+				<div class="new-body"><%- news[i].body %></div>
+			</div>
 		<article>
 	<% } %>
 	
