@@ -1,20 +1,40 @@
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
 .container {
+	margin: 2em 0 0 0;
 	width: 90%;
 	background-color: #333;
-	margin: 0 auto;
-	margin-top: 2em;
+	opacity: .9;
+	font-family: "Roboto";
+	color: white;
+	font-size: 1em;
 	display: flex;
-	padding: 1em;
-	box-sizing: border-box;
 }
 
 .new-container {
-	width: 50%;
-	display: inline-block;
-	margin-right: -0.3%;
+	flex: auto;
 }
 
-.new-content {
-	font-size: 1em;
-	color: white;
+.new-img {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: inline-block;
+}
+
+.new-img .new-content {
+	position: absolute;
+	bottom: .5em;
+	left: 0;
+	opacity: 0;
+	transition: all .5s ease;
+}
+
+.new-img:hover .new-content {
+	opacity: 1;
 }

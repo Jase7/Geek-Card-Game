@@ -16,11 +16,14 @@
 <div class="container">
 	
 	<% for (var i = 0; i < news.length; i++) { %>
-		<article class="new-container" style="background-image: url(<%= news[i].imgUrl %>); background-size: 100% 100%">
-			<div class=new-content">
-				<div class="new-title"><%= news[i].title %></div>
-				<div class="new-body"><%- news[i].body %></div>
-			</div>
+		<article class="new-container">
+			<div class="new-img">
+				<img src="<%= news[i].imgUrl %>" alt="new">
+
+				<div class="new-content">
+					<div class="new-title"><%= news[i].title %></div>
+				</div>
+			</div>			
 		<article>
 	<% } %>
 	
