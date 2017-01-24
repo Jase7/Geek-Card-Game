@@ -18,7 +18,7 @@
     "helmet": "^2.3.0",
     "method-override": "^2.3.6",
     "morgan": "~1.6.1",
-    "node-mysql": "*",
+    "mysql": "*",
     "nodemailer": "^2.6.4",
     "password-hash": "^1.2.2",
     "serve-favicon": "~2.3.0"

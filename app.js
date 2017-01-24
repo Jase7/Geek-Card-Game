@@ -20,6 +20,7 @@ var logout = require('./routes/logout');
 var createNews = require('./routes/createNews');
 var showCard = require('./routes/showCard');
 var game = require('./routes/game');
+var decks = require('./routes/decks');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/logout', logout);
 app.use('/admin/news', createNews);
 app.use('/card', showCard);
 app.use('/game', game);
+app.use('/deckscards', decks);
 
 
 // catch 404 and forward to error handler
