@@ -67,6 +67,7 @@ router.post('/', function(req, res, next) {
 			}
 
 			else {
+				connection.end();
 				res.redirect('/admin/news');
 			}
 		}

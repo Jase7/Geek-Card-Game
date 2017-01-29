@@ -36,7 +36,7 @@ router.get('/:id', function(req, res, next) {
 			}
 
 			else {
-				console.log(result);
+				connection.end();
 				res.json(result);
 			}
 		});
