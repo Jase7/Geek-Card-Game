@@ -6,58 +6,102 @@ var config = require('../config');
 /* GET news page. */
 router.get('/', function(req, res, next) {
 
-	var connection = mysql.createConnection({
-		host: config.hostname,
-		user: config.user,
-		password: config.pass,
-		database: config.database,
-		port: config.port
-	});
 
-	connection.connect(function(error) {
+	//If the cookies are setted
+	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
 
-		if (error) {
-			console.log(error);
-		}
-	})
+		//Handling the cookie is the correct 
+		getSessionID(req.cookies['user'], function(result) {
 
-	var query = connection.query('SELECT title, body, imgUrl FROM news'
-		, function(error, result) {
+			var sesion = result;
 
-			if (error) {
-				console.log(error)
+			//If it's the same, you have access to the page
+			if (req.cookies['userID_'] == sesion) {
+
+				//Let's pass the news to the view
+				getNews(function(news) {
+
+					res.render('news', { news: news });					
+				})
 			}
 
+			//If doesn't you have to log in again
 			else {
-
-				if (req.session.user) {
-
-					res.render('news', {
-						user: req.session.user
-						, news: result
-					});
-				}	
-
-				else if (req.cookies.user) {
-
-					res.render('news', {
-						user: req.cookies.user
-						, news: result
-					})
-				}	
-
-				else {
-					res.redirect('/');
-				}
+				res.redirect('/');
 			}
-		}
-	)
+		});	
 
-	connection.end();
+	} 
 
+	//There aren't no cookies but there are ssessions
+	else if (req.session.user && req.session.admin && req.session.userID) {
+
+		res.render('news', { news: news});
+	}
+
+	//You're not logged in
+	else {
+		res.redirect('/');
+	}
 
 	
-  		
+
+	function getSessionID(user, callback) {
+
+		var connection = mysql.createConnection({
+			host: config.host,
+			user: config.user,
+			password: config.password,
+			database: config.database,
+			port: config.port
+		});
+
+		connection.query('SELECT is_active FROM users WHERE strUsername = (?)'
+			,[user] , function(error, result) {
+
+				if (error) {
+					console.log(error)
+				}
+
+				else {
+
+					if (result.length == 1) {
+
+						var resultado = result[0].is_active
+
+						connection.end();
+						callback(resultado);
+					}
+				}
+			})
+		} //end getSessionID
+
+	function getNews(callback) {
+
+		var connection = mysql.createConnection({
+			host: config.host,
+			user: config.user,
+			password: config.password,
+			database: config.database,
+			port: config.port
+		});
+
+		connection.query('SELECT * FROM news'
+
+			, function(error, result) {
+
+				if (error) {
+					console.log(error)
+				}
+
+				else {
+					
+					connection.end();
+					callback(result);
+				}
+			})
+	} //end getNews
+
 });
 
 module.exports = router;

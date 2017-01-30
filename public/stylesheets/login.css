@@ -95,6 +95,11 @@ input[type=text], input[type=password] {
 	font-weight: bold;
 }
 
+.message {
+	color: 000;
+	font-weight: bold
+}
+
 /* Create the check button */
 
 #remember {

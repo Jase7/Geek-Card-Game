@@ -36,7 +36,19 @@
 				<div class="btnLogin">
 					<input type="submit" name="send" value="Iniciar sesión"/>
 				</div>
-			</div>			
+			</div>	
+
+			<% if (typeof exist != 'undefined' && exist == '0') { %>	
+
+				<div class="message">
+					<span class="no-user">El usuario no existe, compruebe que el usuario introducido es correcto</span>
+				</div>	
+
+			<% }  else if (typeof exist != 'undefined' && exist == '1') { %>
+				<div class="message">
+					<span class="wrong-password">La contraseña introducida es incorrecta</span>
+				</div>
+			<% } %>
 		</form>
 
 		<a href="/register" title="Registro">¿Aún no tienes cuenta? ¡Regístrate!</a>

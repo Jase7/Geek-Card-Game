@@ -38,11 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(methodOverride('_method'));
 app.use(session({
+                name: config.sessionName,
                 secret: config.sessionSecret,
                 resave: false,
                 saveUninitialized: true,
                 httpOnly: true,
-                secure: true,
                 ephemeral: true
               }));
 app.use(multipart());
