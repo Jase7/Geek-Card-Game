@@ -8,7 +8,6 @@ body {
 .container {
 	margin: 2em 0 0 0;
 	width: 90%;
-	background-color: #333;
 	opacity: .9;
 	font-family: "Roboto";
 	color: white;
@@ -17,7 +16,10 @@ body {
 }
 
 .new-container {
-	flex: auto;
+	flex-basis: auto;
+	display: flex;
+	margin: 0 .5em;
+	height: 100%;
 }
 
 .new-img {
@@ -27,14 +29,27 @@ body {
 	display: inline-block;
 }
 
+.new-img img {
+	width: 100%;
+	height: 100%;
+	transitioN: all .5 ease;
+}
+
 .new-img .new-content {
 	position: absolute;
 	bottom: .5em;
-	left: 0;
+	left: 1em;
 	opacity: 0;
 	transition: all .5s ease;
+	font-size: 1.5em;
 }
 
 .new-img:hover .new-content {
 	opacity: 1;
 }
+
+.new-img:hover img {
+	background-color: #000;
+	opacity: .5;
+}
+
