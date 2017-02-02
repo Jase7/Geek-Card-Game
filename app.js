@@ -60,7 +60,6 @@ app.use('/card', showCard);
 app.use('/game', game);
 app.use('/deckscards', decks);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

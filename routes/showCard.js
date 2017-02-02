@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var router = express.Router();
 var config = require('../config');
 
-router.get('/:id', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
 	//Create conn
 	var connection = mysql.createConnection({

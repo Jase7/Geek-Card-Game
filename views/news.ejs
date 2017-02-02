@@ -16,15 +16,18 @@
 <div class="container">
 	
 	<% for (var i = 0; i < news.length; i++) { %>
-		<article class="new-container">
-			<div class="new-img">
-				<img src="<%= news[i].imgUrl %>" alt="new">
+	
+		<a href="/news/<%= news[i].srcUrl %>">
+			<article class="new-container">
+				<div class="new-img">
+					<img src="<%= news[i].imgUrl %>" alt="new">
 
-				<div class="new-content">
-					<div class="new-title"><%= news[i].title %></div>
-				</div>
-			</div>			
-		<article>
+					<div class="new-content">
+						<div class="new-title"><%= news[i].title %></div>
+					</div>
+				</div>			
+			<article>
+		</a>
 	<% } %>
 	
 </div>

@@ -32,47 +32,34 @@ router.post('/', function(req, res, next) {
 
 	//Create the conn
 	var connection = mysql.createConnection({
-		host: config.hostname,
+		host: config.host,
 		user: config.user,
-		password: config.pass,
+		password: config.password,
 		database: config.database,
 		port: config.port
-	});
-
-	//Let's connect
-	connection.connect(function(error){
-
-	   if (error) {
-
-	      console.log(error);
-	   } 
-
-	   else {
-	      console.log('Conexion correcta.');
-	   }
 	});
 
 	var title = req.sanitize(req.body.title);
 	var body = req.sanitize(req.body.body);
 	var img = req.files.img;
 	var imgUrl = uploadImg(img);
-
-	var query = connection.query('INSERT INTO news (title, body, imgUrl) VALUES (?, ?, ?)'
-		,[title, body, imgUrl]
+	var srcUrl = getUrl(req.sanitize(req.body.title));
+		
+	var query = connection.query('INSERT INTO news (title, body, imgUrl, srcUrl) VALUES (?, ?, ?, ?)'
+		,[title, body, imgUrl, srcUrl]
 
 		,function(error, result) {
 
 			if (error) {
 				console.log(error);
+				res.sendStatus(error);
 			}
 
 			else {
 				connection.end();
 				res.redirect('/admin/news');
 			}
-		}
-
-	);
+	});	
 
 	function uploadImg (img) {
 
@@ -101,8 +88,22 @@ router.post('/', function(req, res, next) {
 
 			return '/images/uploads/news/' + name;
 		}	
-	}
+	} // end uploadImg
 
+	function getUrl (str) {
+		
+		var result = str.toLowerCase();
+		
+		result = result.replace(/ /g, "-");
+		result = result.replace(/á/g, "a");
+		result = result.replace(/é/g, "e");
+		result = result.replace(/í/g, "i");
+		result = result.replace(/ó/g, "o");
+		result = result.replace(/ú/g, "u");
+		
+		return result;
+		
+		} // end replace_mia
 });
 
 module.exports = router;

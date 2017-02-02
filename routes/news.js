@@ -6,7 +6,6 @@ var config = require('../config');
 /* GET news page. */
 router.get('/', function(req, res, next) {
 
-
 	//If the cookies are setted
 	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
 
@@ -102,6 +101,45 @@ router.get('/', function(req, res, next) {
 			})
 	} //end getNews
 
+});
+
+router.get('/:id', function(req, res, next) {
+
+	var connection = mysql.createConnection( {
+
+		host: config.host
+		, user: config.user
+		, password: config.password
+		, database: config.database
+		, port: config.port
+	});
+
+	var query = connection.query('SELECT * FROM news WHERE srcUrl = (?)'
+		, [req.params.id]
+
+		, function(error, result) {
+
+			if (error) {
+				console.log(error);
+				res.render('error', { message: error});
+			}
+
+			else {
+				if (result.length > 0) {
+
+					console.log(result[0])
+
+					var noticia = result[0];
+					res.render('loadNew', { loadedNew: noticia });
+				}
+
+				else {
+					res.render('error', { message: "Not found"});
+				}
+			}
+		});
+
+	connection.end();
 });
 
 module.exports = router;
