@@ -1,0 +1,103 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.register {
+	background-color: rgba(40,43,48,.6);
+	width: 50%;
+	padding: 2em;
+	border-radius: 10px;
+	font-family: 'Roboto';
+	text-align: center;
+	color: #eee;
+	box-sizing: border-box;
+}
+
+.registerTitle {
+	font-size: 2em;
+}
+
+.inputBlock {
+	margin: 2em 0;
+	display: flex;
+	width: 100%;
+}
+
+.inputBlock label {
+	flex: 1 1 52.5%;
+	font-size: 1em;
+	margin-right: 1em;
+	text-align: right;
+}
+
+.inputBlock input {
+	flex: 1 1 42.5%;
+	font-size: .9em;
+	padding: .3em;
+	border: none;
+	background: none;
+	color: #ddd;
+	border-bottom: 1px solid #aaa;
+}
+
+.inputBlock span {
+	flex: 1 1 5%;
+	font-size: 1.5em;
+	display: none;
+	position: relative;
+	right: 1em;
+}
+
+.icon-valid {
+	color: limegreen;
+}
+
+.icon-invalid {
+	color: tomato;
+}
+
+/* Responsive design mobile*/
+
+@media (max-width: 768px) {
+
+	.register {
+		width: 100%;
+		padding: 1.5em;
+	}
+
+	.registerTitle {
+		font-size: 1.3em;
+	}
+
+	.registerForm {
+		width: 100%;
+		margin-top: 1.5em;
+	}
+
+	.inputBlock {
+		margin: 1em 0;
+		font-size: .9em;
+	}
+
+	.inputBlock label {
+		font-size: .9em;
+		text-align: left;
+		margin: 0 .5em;
+		flex: 1 1 40%;
+
+	}
+
+	.inputBlock input {
+		padding: 0;
+	}
+
+	.inputBlock span {
+		font-size: 1.3em;
+		display: flex;
+		justify-items: center;
+		align-items: center;
+	}
+}

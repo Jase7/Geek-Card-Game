@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Gestor de Noticias</title>
+	<link rel="stylesheet" href="/../stylesheets/style.css">
+	<link rel="stylesheet" href="/../stylesheets/createNews.css">
+</head>
+<body>
+
+		<div class="container">
+			
+			<form action="/admin/news" method="POST" enctype="multipart/form-data">
+				<input type="text" name="title" placeholder="Título de la noticia" required>
+				<textarea name="body" cols="30" rows="30"></textarea>
+				<input type="file" name="img" />
+				<input type="submit" value="Crear noticia">
+			</form>
+
+		</div>
+	
+</body>
+</html>

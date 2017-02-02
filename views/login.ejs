@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Iniciar sesión</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+</head>
+<body>
+
+<div class="bg-blur"></div>
+
+<div class="container">
+	<div class="login">
+		<span class="loginTitle">Iniciar sesión en Geek Card Game</span>
+		<form action="/" method="POST" accept-charset="utf-8" class="loginForm">
+			
+	    	<div class="inputBlock">
+	       		<label for="user">Usuario</label>     	
+	       		<input type="text" name="user" id="user" placeholder="Usuario" required/>	 
+	        </div> 	
+
+	        <div class="inputBlock">	
+		 		<label for="pass">Contraseña</label>
+		 		<input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
+		 	</div>
+
+		 	<div class="inputBlock">
+				<span>Recordar contraseña</span><input type="checkbox" name="remember" id="remember">
+				<label for="remember" class="remember"></label>
+			</div>
+
+			<div class="inputBlock">
+				<div class="btnLogin">
+					<input type="submit" name="send" value="Iniciar sesión"/>
+				</div>
+			</div>	
+
+			<% if (typeof exist != 'undefined' && exist == '0') { %>	
+
+				<div class="message">
+					<span class="no-user">El usuario no existe, compruebe que el usuario introducido es correcto</span>
+				</div>	
+
+			<% }  else if (typeof exist != 'undefined' && exist == '1') { %>
+				<div class="message">
+					<span class="wrong-password">La contraseña introducida es incorrecta</span>
+				</div>
+			<% } %>
+		</form>
+
+		<a href="/register" title="Registro">¿Aún no tienes cuenta? ¡Regístrate!</a>
+	</div>	
+</div>
+</body>
+</html>
