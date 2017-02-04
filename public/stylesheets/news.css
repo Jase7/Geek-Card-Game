@@ -22,6 +22,10 @@ body {
 	height: 100%;
 }
 
+.new-container a {
+	color: white;
+}
+
 .new-img {
 	position: relative;
 	top: 0;
@@ -53,3 +57,10 @@ body {
 	opacity: .5;
 }
 
+/* media queries responsive login */
+
+/* breakpoint web*/
+@media (max-width: 768px) {
+
+	
+}

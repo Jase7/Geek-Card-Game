@@ -3,23 +3,15 @@ var mysql = require('mysql');
 var router = express.Router();
 var config = require('../config');
 
-router.get('/', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
 
 	//Create conn
 	var connection = mysql.createConnection({
-		host: config.hostname,
+		host: config.host,
 		user: config.user,
-		password: config.pass,
+		password: config.password,
 		database: config.database,
 		port: config.port
-	});
-
-	//Test the conn
-	connection.connect(function(err) {
-
-		if (err) {
-			console.log(err)
-		}
 	});
 
 	//Save the id from the url
@@ -36,10 +28,11 @@ router.get('/', function(req, res, next) {
 			}
 
 			else {
-				connection.end();
 				res.json(result);
 			}
 		});
+
+	connection.end();
 });
 
 module.exports = router;

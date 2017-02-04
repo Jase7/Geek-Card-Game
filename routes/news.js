@@ -35,7 +35,11 @@ router.get('/', function(req, res, next) {
 	//There aren't no cookies but there are ssessions
 	else if (req.session.user && req.session.admin && req.session.userID) {
 
-		res.render('news', { news: news});
+		//Let's pass the news to the view
+		getNews(function(news) {
+
+			res.render('news', { news: news });					
+		})
 	}
 
 	//You're not logged in
@@ -126,8 +130,6 @@ router.get('/:id', function(req, res, next) {
 
 			else {
 				if (result.length > 0) {
-
-					console.log(result[0])
 
 					var noticia = result[0];
 					res.render('loadNew', { loadedNew: noticia });

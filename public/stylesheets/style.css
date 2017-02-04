@@ -123,3 +123,23 @@ a {
 	flex: auto;
 	padding: .9em 0;
 }
+
+
+/* media queries responsive */
+
+/* breakpoint web*/
+@media (max-width: 768px) {
+
+	/* Reset the menu */
+	.menu {
+		all: initial !important;
+	}
+	
+	.menu * {
+		all: initial !important;;
+	}
+	
+	.logo {
+		display: none !important;
+	}
+}
