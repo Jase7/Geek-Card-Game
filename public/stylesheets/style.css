@@ -124,6 +124,10 @@ a {
 	padding: .9em 0;
 }
 
+.toggleMenu {
+	display: none;
+}
+
 
 /* media queries responsive */
 
@@ -132,14 +136,58 @@ a {
 
 	/* Reset the menu */
 	.menu {
-		all: initial !important;
+		all: unset;
+		width: 40%;
+		position: absolute;
+		left: -40%;
+		padding-top: 2em;
+		z-index: 20;
+		background-color: rgba(0, 0, 0, .9);
+		height: 100vh;
+		box-sizing: border-box;
+		font-family: "Roboto";
+		transition: all .5s;
+	}
+	
+	.menu {
+		color: white !important;
+	}
+	
+	.menu.mostrar-menu {
+		left: 0;
 	}
 	
 	.menu * {
-		all: initial !important;;
+		all: unset !important;
 	}
 	
 	.logo {
 		display: none !important;
+	}
+	
+	.skew {
+		display: block !important;
+		margin: 1em 0 !important;
+		padding: .5em 0 !important;;
+	}
+	
+	.skew:hover {
+		background-color: rgba(255, 255, 255, .6) !important;;
+		width:100%;
+	}
+	
+	.menu li {
+		all: unset;
+		padding-left: .5em !important;
+	}
+
+	.toggleMenu {
+		display: inline-block;
+		position: absolute;
+		top: .5em;
+		left: .5em;
+		z-index: 30;
+		color: white;
+		font-size: 1.5em;
 	}
 }
