@@ -14,14 +14,6 @@ router.get('/:id', function(req, res, next) {
 		port: config.port
 	});
 
-	//Test the conn
-	connection.connect(function(err) {
-
-		if (err) {
-			console.log(err)
-		}
-	});
-
 	//Save the id from the url
 	var idDeck = req.params.id;
 
@@ -36,10 +28,11 @@ router.get('/:id', function(req, res, next) {
 			}
 
 			else {
-				connection.end();
 				res.json(result);
 			}
 		});
+
+	connection.end();
 });
 
 module.exports = router;

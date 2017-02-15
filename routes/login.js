@@ -29,7 +29,8 @@ router.get('/', function(req, res, next) {
 
 	} 
 
-	//There aren't no cookies but there are ssessions
+	//There aren't no cookies but there are session
+
 	else if (req.session.user && req.session.admin && req.session.userID) {
 
 		res.redirect('/news')
@@ -43,6 +44,11 @@ router.get('/', function(req, res, next) {
 	
 
 	function getSessionID(user, callback) {
+
+		console.log(config.host);
+		console.log(config.user);
+		console.log(config.password);
+		console.log(config.port);
 
 		var connection = mysql.createConnection({	
 			host: config.host,
@@ -146,9 +152,9 @@ router.post('/', function(req, res) {
 
 								else {
 
+									req.session.userID = req.sessionID;
 									req.session.user = user; //save the username
 									req.session.admin = result[0].is_admin; //save if user is admin or not
-									req.session.userID = req.sessionID;
 
 									res.redirect('/news');
 								}

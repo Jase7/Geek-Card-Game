@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var config = require('../config');
+var sanitizer = require('sanitizer');
 
 /* GET news page. */
 router.get('/', function(req, res, next) {
@@ -40,7 +41,7 @@ router.post('/', function(req, res, next) {
 	});
 
 	var title = req.sanitize(req.body.title);
-	var body = req.sanitize(req.body.body);
+	var body = sanitizer.escape(req.body.body);
 	var img = req.files.img;
 	var imgUrl = uploadImg(img);
 	var srcUrl = getUrl(req.sanitize(req.body.title));

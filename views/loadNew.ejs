@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Noticia - <%= loadedNew.title %></title>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-
-<% include header.ejs %>
-
+	<link rel="stylesheet" type="text/css" href="/stylesheets/loadedNew.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/fontello.css" />
+	<script type="text/javascript" src="/javascripts/jquery-3.1.1.min.js"></script>
 </head>
 <body>
+
+	<% include header.ejs %>
+
 	<div class="container">
-	<%- loadedNew.title %>
+		<div class="news-container">
+
+			<div class="new-title">
+				<%= loadedNew.title %>
+			</div>
+
+			<div class="new-body">
+				<div class="new-img">
+					<img src="<%= loadedNew.imgUrl %>">
+				</div>
+
+
+				<%- cuerpo %>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

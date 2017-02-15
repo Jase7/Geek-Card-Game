@@ -123,3 +123,89 @@ a {
 	flex: auto;
 	padding: .9em 0;
 }
+
+.toggleMenu {
+	display: none;
+}
+
+
+/* media queries responsive */
+
+/* breakpoint web*/
+@media screen and (max-width: 768px) {
+
+	/* Reset the menu */
+	.menu {
+		all: unset;
+		width: 40%;
+		position: absolute;
+		left: -40%;
+		top: 0;
+		padding-top: 2em;
+		z-index: 20;
+		background-color: rgba(0, 0, 0, .9);
+		height: 100vh;
+		box-sizing: border-box;
+		font-family: "Roboto";
+		transition: all .5s;
+	}
+	
+	.menu {
+		color: white !important;
+	}
+	
+	.menu.mostrar-menu {
+		left: 0;
+	}
+	
+	.menu * {
+		all: unset !important;
+	}
+	
+	.logo {
+		display: none !important;
+	}
+	
+	.skew {
+		display: block !important;
+		
+	}
+
+	ul:first-child .skew:first-child {
+		margin: 2em 0 0 0 !important;
+	}
+	
+	.skew:hover {
+		background-color: rgba(255, 255, 255, .6) !important;;
+		width:100%;
+	}
+	
+	.menu li {
+		all: unset !important;
+		display: block !important;
+	}
+
+	.menu li a {
+		display: block !important;
+		text-indent: 1em !important;
+		line-height: 3 !important;
+    	height: 100% !important;
+	}
+
+	.toggleMenu {
+		display: inline-block;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    color: white;
+	    font-size: 1.5em;
+	    background-color: black;
+	    width: 100%;
+	    z-index: 30;
+	    padding: .5em 0;
+	}
+
+	.icon-menu {
+		margin-left: 1em;
+	}
+}
