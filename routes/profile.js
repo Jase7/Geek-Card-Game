@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
-var config = require('../config');
+var functions = require('../functions');
 
 /* GET profile page. */
 router.get('/', function(req, res) {
@@ -10,7 +9,7 @@ router.get('/', function(req, res) {
 	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
 
 		//Handling the cookie is the correct 
-		getSessionID(req.cookies['user'], function(result) {
+		functions.getSessionID(req.cookies['user'], function(result) {
 
 			var sesion = result;
 
@@ -25,7 +24,6 @@ router.get('/', function(req, res) {
 				res.redirect('/');
 			}
 		});	
-
 	} 
 
 	//There aren't no cookies but there are ssessions
@@ -37,40 +35,7 @@ router.get('/', function(req, res) {
 	//You're not logged in
 	else {
 		res.redirect('/');
-	}
-
-	
-
-	function getSessionID(user, callback) {
-
-		var connection = mysql.createConnection({	
-			host: config.host,
-			user: config.user,
-			password: config.password,
-			database: config.database,
-			port: config.port
-		});
-
-		connection.query('SELECT is_active FROM users WHERE strUsername = (?)'
-			,[user] , function(error, result) {
-
-				if (error) {
-					console.log(error)
-				}
-
-				else {
-
-					if (result.length == 1) {
-
-						var resultado = result[0].is_active
-
-						callback(resultado);
-					}
-				}
-			})
-
-		connection.end();
-		} //end getSessionID    		
+	}    		
 });
 
 

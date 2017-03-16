@@ -13,14 +13,18 @@ var config = require('./config');
 
 var login = require('./routes/login');
 var register = require('./routes/register');
-var checkUser = require('./routes/checkUser');
 var news = require('./routes/news');
 var profile = require('./routes/profile');
 var logout = require('./routes/logout');
 var createNews = require('./routes/createNews');
-var showCard = require('./routes/showCard');
 var game = require('./routes/game');
+//API
+var showCard = require('./routes/showCard');
+var checkUser = require('./routes/checkUser');
+var deckscards = require('./routes/deckscards');
 var decks = require('./routes/decks');
+var enemies = require('./routes/enemies');
+var saveProgress = require('./routes/saveProgress');
 
 var app = express();
 
@@ -53,12 +57,15 @@ app.use('/', login);
 app.use('/profile', profile);
 app.use('/news', news);
 app.use('/register', register);
-app.use('/checkUser', checkUser);
 app.use('/logout', logout);
 app.use('/admin/news', createNews);
-app.use('/card', showCard);
 app.use('/game', game);
-app.use('/deckscards', decks);
+app.use('/api/card', showCard);
+app.use('/api/checkUser', checkUser);
+app.use('/api/deckscards', deckscards);
+app.use('/api/decks', decks);
+app.use('/api/enemies', enemies);
+app.use('/api/saveProgress', saveProgress);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

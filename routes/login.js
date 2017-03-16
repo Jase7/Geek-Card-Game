@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var config = require('../config');
+var mysql = require('mysql');
+var functions = require('../functions');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-
+	
 	//If the cookies are setted
-	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
+	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_'] && req.cookies['codUser']) {
 
 		//Handling the cookie is the correct 
-		getSessionID(req.cookies['user'], function(result) {
+		functions.getSessionID(req.cookies['user'], function(result) {
 
 			var sesion = result;
 
@@ -25,13 +26,11 @@ router.get('/', function(req, res, next) {
 			else {
 				res.render('login');
 			}
-		});	
-
+		});
 	} 
 
 	//There aren't no cookies but there are session
-
-	else if (req.session.user && req.session.admin && req.session.userID) {
+	else if (req.session.user && req.session.admin && req.session.userID && req.session.codUser) {
 
 		res.redirect('/news')
 	}
@@ -39,41 +38,7 @@ router.get('/', function(req, res, next) {
 	//You're not logged in
 	else {
 		res.render('login');
-	}
-
-	
-
-	function getSessionID(user, callback) {
-
-		var connection = mysql.createConnection({	
-			host: config.host,
-			user: config.user,
-			password: config.password,
-			database: config.database,
-			port: config.port
-		});
-
-		connection.query('SELECT is_active FROM users WHERE strUsername = (?)'
-			,[user] , function(error, result) {
-
-				if (error) {
-					console.log(error)
-				}
-
-				else {
-
-					if (result.length == 1) {
-
-						var resultado = result[0].is_active
-
-						callback(resultado);
-					}
-				}
-			})
-
-		connection.end();
-
-		} //end getSessionID  		
+	}	
 });
 
 /* POST login page. */
@@ -122,7 +87,7 @@ router.post('/', function(req, res) {
 								//Now, we create the session and cookies depending of the remember in form
 								if (remember == 'on') {
 
-									saveIsActive(req.sessionID, user);
+									functions.saveIsActive(req.sessionID, user);
 
 									res.cookie('userID_', req.sessionID, {
 
@@ -136,10 +101,17 @@ router.post('/', function(req, res) {
 										, httpOnly: true
 									})
 
-									res.cookie('is_admin', result[0].is_admin, {
+									res.cookie('is_admin', result[0].isAdmin, {
 
 										maxAge: 30 * 24 * 60 * 60 * 1000
 										, httpOnly: true
+
+									})
+
+									res.cookie('codUser', result[0].id, {
+
+										maxAge: 30 * 24 * 60 * 60 * 1000
+										,httpOnly: true
 
 									}).redirect('/news');
 
@@ -149,7 +121,8 @@ router.post('/', function(req, res) {
 
 									req.session.userID = req.sessionID;
 									req.session.user = user; //save the username
-									req.session.admin = result[0].is_admin; //save if user is admin or not
+									req.session.admin = result[0].isAdmin; //save if user is admin or not
+									req.session.codUser = result[0].id; //save the ID of the user
 
 									res.redirect('/news');
 								}
@@ -175,32 +148,6 @@ router.post('/', function(req, res) {
 		}); //End query
 
 	connection.end();
-
-
-	function saveIsActive(session_id, user) {
-
-		var connection = mysql.createConnection({	
-			host: config.host,
-			user: config.user,
-			password: config.password,
-			database: config.database,
-			port: config.port
-		});
-
-		var query = connection.query('UPDATE users SET is_active = (?) WHERE strUsername = (?)'
-			, [session_id, user]
-
-			, function(error, result) {
-
-				if (error) {
-					console.log(error)
-				}
-			});
-
-		connection.end();
-
-	} //end  saveIsActive
-
 }); //End router.post
 
 module.exports = router;

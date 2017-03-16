@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var sanitizer = require('sanitizer');
 var config = require('../config');
+var mysql = require('mysql');
+var functions = require('../functions');
 
 /* GET news page. */
 router.get('/', function(req, res, next) {
@@ -10,7 +13,7 @@ router.get('/', function(req, res, next) {
 	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
 
 		//Handling the cookie is the correct 
-		getSessionID(req.cookies['user'], function(result) {
+		functions.getSessionID(req.cookies['user'], function(result) {
 
 			var sesion = result;
 
@@ -18,7 +21,7 @@ router.get('/', function(req, res, next) {
 			if (req.cookies['userID_'] == sesion) {
 
 				//Let's pass the news to the view
-				getNews(function(news) {
+				functions.getNews(function(news) {
 
 					res.render('news', { news: news });					
 				})
@@ -29,14 +32,13 @@ router.get('/', function(req, res, next) {
 				res.redirect('/');
 			}
 		});	
-
 	} 
 
 	//There aren't no cookies but there are ssessions
 	else if (req.session.user && req.session.admin && req.session.userID) {
 
 		//Let's pass the news to the view
-		getNews(function(news) {
+		functions.getNews(function(news) {
 
 			res.render('news', { news: news });					
 		})
@@ -46,64 +48,6 @@ router.get('/', function(req, res, next) {
 	else {
 		res.redirect('/');
 	}
-
-	
-
-	function getSessionID(user, callback) {
-
-		var connection = mysql.createConnection({
-			host: config.host,
-			user: config.user,
-			password: config.password,
-			database: config.database,
-			port: config.port
-		});
-
-		connection.query('SELECT is_active FROM users WHERE strUsername = (?)'
-			,[user] , function(error, result) {
-
-				if (error) {
-					console.log(error)
-				}
-
-				else {
-
-					if (result.length == 1) {
-
-						var resultado = result[0].is_active
-
-						connection.end();
-						callback(resultado);
-					}
-				}
-			})
-		} //end getSessionID
-
-	function getNews(callback) {
-
-		var connection = mysql.createConnection({
-			host: config.host,
-			user: config.user,
-			password: config.password,
-			database: config.database,
-			port: config.port
-		});
-
-		connection.query('SELECT * FROM news'
-
-			, function(error, result) {
-
-				if (error) {
-					console.log(error)
-				}
-
-				else {
-					
-					connection.end();
-					callback(result);
-				}
-			})
-	} //end getNews
 
 });
 
@@ -132,7 +76,10 @@ router.get('/:id', function(req, res, next) {
 				if (result.length > 0) {
 
 					var noticia = result[0];
-					res.render('loadNew', { loadedNew: noticia });
+					var bodyNew = sanitizer.unescapeEntities(noticia.body);
+					
+					res.render('loadNew', { loadedNew: noticia
+											, cuerpo: bodyNew });
 				}
 
 				else {

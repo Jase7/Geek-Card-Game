@@ -23,7 +23,7 @@ $(document).ready(function() {
         if ($(this).val().length >= 4) {
 
             $.ajax({
-            url: '/checkUser',
+            url: '/api/checkUser',
             type: 'POST',
             data: $('form').serialize(),
             })

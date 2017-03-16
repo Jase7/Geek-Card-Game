@@ -21,8 +21,9 @@ body {
 }
 
 .inputBlock {
-	margin: 2em 0;
 	display: flex;
+	margin: 2em 0;
+	position: relative;
 	width: 100%;
 }
 
@@ -43,12 +44,14 @@ body {
 	border-bottom: 1px solid #aaa;
 }
 
-.inputBlock span {
+.isUserValid {
+	bottom: 0;
+	display: none;
 	flex: 1 1 5%;
 	font-size: 1.5em;
-	display: none;
-	position: relative;
-	right: 1em;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .icon-valid {

@@ -132,7 +132,7 @@ a {
 /* media queries responsive */
 
 /* breakpoint web*/
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
 	/* Reset the menu */
 	.menu {
@@ -140,6 +140,7 @@ a {
 		width: 40%;
 		position: absolute;
 		left: -40%;
+		top: 0;
 		padding-top: 2em;
 		z-index: 20;
 		background-color: rgba(0, 0, 0, .9);
@@ -167,8 +168,11 @@ a {
 	
 	.skew {
 		display: block !important;
-		margin: 1em 0 !important;
-		padding: .5em 0 !important;;
+		
+	}
+
+	ul:first-child .skew:first-child {
+		margin: 2em 0 0 0 !important;
 	}
 	
 	.skew:hover {
@@ -177,17 +181,31 @@ a {
 	}
 	
 	.menu li {
-		all: unset;
-		padding-left: .5em !important;
+		all: unset !important;
+		display: block !important;
+	}
+
+	.menu li a {
+		display: block !important;
+		text-indent: 1em !important;
+		line-height: 3 !important;
+    	height: 100% !important;
 	}
 
 	.toggleMenu {
 		display: inline-block;
-		position: absolute;
-		top: .5em;
-		left: .5em;
-		z-index: 30;
-		color: white;
-		font-size: 1.5em;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    color: white;
+	    font-size: 1.5em;
+	    background-color: black;
+	    width: 100%;
+	    z-index: 30;
+	    padding: .5em 0;
+	}
+
+	.icon-menu {
+		margin-left: 1em;
 	}
 }

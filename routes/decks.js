@@ -1,38 +1,34 @@
 var express = require('express');
-var mysql = require('mysql');
 var router = express.Router();
 var config = require('../config');
+var mysql = require('mysql');
 
-router.get('/:id', function(req, res, next) {
+router.get('/:arg1/:arg2/:arg3', function(req, res, next) {
 
-	//Create conn
-	var connection = mysql.createConnection({
-		host: config.host,
-		user: config.user,
-		password: config.password,
-		database: config.database,
-		port: config.port
-	});
-
-	//Save the id from the url
-	var idDeck = req.params.id;
-
-	//Query
-	var query = connection.query('SELECT * FROM cardsdeck WHERE codDeck = (?)'
-		, [idDeck]
-
-		, function(err, result) {
-
-			if (err) {
-				console.log(err);
-			}
-
-			else {
-				res.json(result);
-			}
+	
+	var connection = mysql.createConnection({	
+			host: config.host,
+			user: config.user,
+			password: config.password,
+			database: config.database,
+			port: config.port
 		});
 
-	connection.end();
-});
+		connection.query('INSERT INTO history (codUser, levelSeed, blnVictory, points) VALUES (?, ?, ?, ?)'
+			,[idLog, argumento1, argumento2, argumento3]	
+			, function(error, result) {
+
+				if (error) {
+					console.log(error)
+				}
+
+				else {
+					res.json(result);					
+				}		
+		})
+
+		connection.end();
+
+})
 
 module.exports = router;

@@ -1,14 +1,45 @@
 var express = require('express');
-var mysql = require('mysql');
 var hash = require("password-hash");
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
+var functions = require('../functions');
 var router = express.Router();
-var config = require('../config');
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-  res.render('register', {});
+
+	//If the cookies are setted
+	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
+
+		//Handling the cookie is the correct 
+		functions.getSessionID(req.cookies['user'], function(result) {
+
+			var sesion = result;
+
+			//If it's the same, you have access to the page
+			if (req.cookies['userID_'] == sesion) {
+
+				res.redirect('/news')				
+			}
+
+			//If doesn't you have to log in again
+			else {
+				res.redirect('register', {});
+			}
+		});	
+	} 
+
+	//There aren't no cookies but there are session
+
+	else if (req.session.user && req.session.admin && req.session.userID) {
+
+		res.redirect('/news')
+	}
+
+	//You're not logged in
+	else {
+		res.render('register');
+	}
 });
 
 module.exports = router;

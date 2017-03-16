@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('.toggleMenu').click(function() {
+	$('.icon-menu').click(function() {
 
 		$('.menu').toggleClass("mostrar-menu");
 
