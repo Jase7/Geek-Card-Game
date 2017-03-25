@@ -14,15 +14,6 @@ router.post('/', function(req, res, next) {
 		port: config.port
 	});
 
-	connection.connect(function(error){
-
-	   if(error){
-	      throw error;
-	   } else{
-	      console.log('Conexion correcta.');
-	   }
-	});
-
 	var user = req.body.user;
 
 	var query = connection.query('SELECT * FROM users WHERE strUsername = (?)'

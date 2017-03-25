@@ -22,11 +22,12 @@ router.get('/', function(req, res, next) {
 				console.log(error)
 			}
 			else {
+				console.log(result)
 				res.json(result)
 			}
 		})
 
-	connection.close();
+	connection.end();
 })
 
 

@@ -13,6 +13,7 @@ var config = require('./config');
 
 var login = require('./routes/login');
 var register = require('./routes/register');
+var validate = require('./routes/validate');
 var news = require('./routes/news');
 var profile = require('./routes/profile');
 var logout = require('./routes/logout');
@@ -57,6 +58,7 @@ app.use('/', login);
 app.use('/profile', profile);
 app.use('/news', news);
 app.use('/register', register);
+app.use('/validate', validate);
 app.use('/logout', logout);
 app.use('/admin/news', createNews);
 app.use('/game', game);

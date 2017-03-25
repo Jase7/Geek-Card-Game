@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 	} 
 
 	//There aren't no cookies but there are session
-	else if (req.session.user && req.session.admin && req.session.userID && req.session.codUser) {
+	else if (req.session.user && req.session.admin && req.session.userID) {
 
 		res.redirect('/news')
 	}
