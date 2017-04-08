@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 			//If it's the same, you have access to the page
 			if (req.cookies['userID_'] == sesion) {
 
-				res.redirect('/news')				
+				res.redirect('/')				
 			}
 
 			//If doesn't you have to log in again
@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 	//There aren't no cookies but there are session
 	else if (req.session.user && req.session.admin && req.session.userID) {
 
-		res.redirect('/news')
+		res.redirect('/')
 	}
 
 	//You're not logged in
@@ -113,7 +113,7 @@ router.post('/', function(req, res) {
 										maxAge: 30 * 24 * 60 * 60 * 1000
 										,httpOnly: true
 
-									}).redirect('/news');
+									}).redirect('/');
 
 								}
 
@@ -124,7 +124,7 @@ router.post('/', function(req, res) {
 									req.session.admin = result[0].isAdmin; //save if user is admin or not
 									req.session.codUser = result[0].id; //save the ID of the user
 
-									res.redirect('/news');
+									res.redirect('/');
 								}
 							} //End if (pass is true)
 

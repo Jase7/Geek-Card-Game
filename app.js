@@ -11,6 +11,7 @@ var multipart = require('connect-multiparty');
 var expressSanitizer = require('express-sanitizer');
 var config = require('./config');
 
+var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var validate = require('./routes/validate');
@@ -20,6 +21,7 @@ var logout = require('./routes/logout');
 var createNews = require('./routes/createNews');
 var game = require('./routes/game');
 //API
+var render = require('./routes/render');
 var showCard = require('./routes/showCard');
 var checkUser = require('./routes/checkUser');
 var deckscards = require('./routes/deckscards');
@@ -54,7 +56,8 @@ app.use(multipart());
 app.use(expressSanitizer());
 
 //Routes
-app.use('/', login);
+app.use('/', index);
+app.use('/login', login);
 app.use('/profile', profile);
 app.use('/news', news);
 app.use('/register', register);
@@ -62,6 +65,7 @@ app.use('/validate', validate);
 app.use('/logout', logout);
 app.use('/admin/news', createNews);
 app.use('/game', game);
+app.use('/api/render', render);
 app.use('/api/card', showCard);
 app.use('/api/checkUser', checkUser);
 app.use('/api/deckscards', deckscards);

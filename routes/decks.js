@@ -3,7 +3,7 @@ var router = express.Router();
 var config = require('../config');
 var mysql = require('mysql');
 
-router.get('/:arg1/:arg2/:arg3', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
 	
 	var connection = mysql.createConnection({	
@@ -14,8 +14,8 @@ router.get('/:arg1/:arg2/:arg3', function(req, res, next) {
 			port: config.port
 		});
 
-		connection.query('INSERT INTO history (codUser, levelSeed, blnVictory, points) VALUES (?, ?, ?, ?)'
-			,[idLog, argumento1, argumento2, argumento3]	
+		connection.query('SELECT * FROM decks'
+			,[]	
 			, function(error, result) {
 
 				if (error) {

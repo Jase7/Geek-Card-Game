@@ -42,6 +42,10 @@ a {
 	display: flex;
 	align-items: flex-start;
 }
+
+.options a {
+	cursor: pointer;
+}
 .skew {
 	background-color: #FEC23E;
 	padding: 0;

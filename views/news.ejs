@@ -1,38 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Noticias</title>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-	<link rel="stylesheet" href="/stylesheets/news.css">
-	<link rel="stylesheet" href="/stylesheets/fontello.css" />
-	<meta name="description" content="Geek Card Game es un juego de cartas multijugador">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="/javascripts/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
-</head>
-<body>
+<% for (var i = 0; i < news.length; i++) { %>
 
-<% include header.ejs %>
+	<a class="new">
+		<article class="new-container">
+			<div class="new-img">
+				<img src="<%= news[i].imgUrl %>" alt="new" />
 
-<div class="container">
-	
-	<% for (var i = 0; i < news.length; i++) { %>
-	
-		<a href="/news/<%= news[i].srcUrl %>" class="new">
-			<article class="new-container">
-				<div class="new-img">
-					<img src="<%= news[i].imgUrl %>" alt="new" />
+				<div class="new-content">
+					<div class="new-title"><%= news[i].title %></div>
+				</div>
+			</div>			
+		</article>
+	</a>
+<% } %>
 
-					<div class="new-content">
-						<div class="new-title"><%= news[i].title %></div>
-					</div>
-				</div>			
-			</article>
-		</a>
-	<% } %>
-	
-</div>
-	
-</body>
-</html>
+
+<title>Noticias</title>
+<link rel="stylesheet" href="/stylesheets/news.css">

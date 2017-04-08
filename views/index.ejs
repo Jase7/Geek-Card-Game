@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Geek Card Game</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
+	<title>GeekCard Game</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/fontello.css" />
+	<meta name="description" content="Geek Card Game es un juego de cartas multijugador">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/javascripts/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="/javascripts/showMenu.js"></script>
+	<script src="/javascripts/render.js"></script>
 </head>
+
 <body>
 
-	<% include header.ejs %>
+	<nav class="toggleMenu">
+			<i class="icon-menu"></i>
+	</nav>
 
-	<div class="news">
-		Bienvenidos a <%= title %>
-	</div>
-	
+	<header class="menu">
+		<ul class="options optionsLeft">
+			<div class="skew"><li><a>Perfil</a></li></div>
+			<div class="skew"><li><a>Noticias</a></li></div>
+		</ul>
+
+		<div class="logo">
+			<img src="/images/web/logo.png" alt="Geek Card Game Logo" title="Geek Card Game" />
+			<div class="divPlay"><a href="/game">Jugar</a></div>
+		</div>
+
+		<ul class="options optionsRight">
+			<div class="skew"><li><a href="/sabiduria">Sabiduria</a></li></div>
+			<div class="skew"><li><a href="/videos">Vídeos</a></li></div>
+		</ul>
+	</header>
+	<!-- /header -->
+
+	<div class="container"></div>
 </body>
 </html>
