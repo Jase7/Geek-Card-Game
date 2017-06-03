@@ -11,6 +11,7 @@ label {
 	display: block;
 	color: #ddd;
 	font-size: 1.3em;
+	margin: 0.5em 0;
 }
 
 label[for=remember] {
@@ -77,7 +78,7 @@ input[type=text], input[type=password] {
 }
 
 .inputBlock {
-	margin: 1vw 0;
+	margin: 1.5vw 0;
 }
 
 .inputBlock span {
@@ -136,6 +137,17 @@ input[type=text], input[type=password] {
 
 #remember:checked + .remember:before {
 	left: 1.5em;
+}
+
+.resetPassword {
+	color: #ddd;
+	cursor: pointer;
+	font-size: 1.2em;
+	margin: 1em 0;
+}
+
+.formResetPassword {
+	display: none;
 }
 
 /* media queries responsive login */

@@ -1,7 +1,61 @@
-<div class="options">
-	<form action="/logout?_method=DELETE" method="POST" accept-charset="utf-8">
-		<button type="submit">Cerrar sesión</button>
-	</form>
+<div class="stats">
+	<h1>Estadísticas de partidas</h1>
+	<div class="recent-plays">
+
+		<div class="match-header">
+			<div class="match-row">
+				<span class="seed">Nº de Seed</span>
+				<span class="turns">Turnos usados</span>
+				<span class="cennitPoints">Cennit Points ganados</span>
+				<span class="blnVictory">Victoria/Derrota</span>
+			</div>
+
+			<% for (let i = 0; i < stats.length; i++) { %>
+			<div class="match-<%= i %> match-row">
+				<span class="seed"><%= stats[i].intSeed %></span>
+				<span class="turns"><%= stats[i].intTurns %></span>
+				<span class="cennitPoints"><%= stats[i].cennitPoints %></span>
+				<% if (stats[i].blnVictory == 'V') { %>
+					<span class="blnVictory"><img src="/images/web/geekcardgame-victory.png" alt="Victoria" title="Victoria"></span>
+				<% } else { %>
+					<span class="blnVictory"><img src="/images/web/geekcardgame-defeat.png" alt="Derrota" title="Derrota"></span>
+				<% } %>
+				
+			</div>
+		<% } %>
+		</div>
+
+		
+		
+	</div>
+	<div class="total-stats"></div>
+</div>
+
+<div class="userOptions">
+
+	<h1>Opciones de usuario</h1>
+
+	<div class="formChangeEmail">
+		<form action="/changeEmail?_method=MODIFY" method="POST" accept-charset="utf-8">
+			<label for="changeEmail">Cambiar email</label>
+			<input type="email" name="changeEmail" id="changeEmail" placeholder="Nuevo email">
+		</form>
+	</div>
+
+	<div class="formChangePassword"><form action="/changePassword?_method=MODIFY" method="POST" accept-charset="utf-8">
+			<label for="changePassword">Cambiar contraseña</label>
+			<input type="password" name="changePassword" id="changePassword" placeholder="Nueva contraseña">
+		</form>	</div>
+
+	<div class="buttonsUser">
+		<form action="/logout?_method=DELETE" method="POST" accept-charset="utf-8">
+			<button type="submit" class="logout">Cerrar sesión</button>
+		</form>
+	
+		<form action="/deleteAccount?_method=DELETE" method="POST" accept-charset="utf-8">
+			<button type="submit" class="deleteAccount">Borrar cuenta</button>
+		</form>
+	</div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">

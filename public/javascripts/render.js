@@ -7,10 +7,12 @@ $(document).ready(function() {
 	})
 })
 
+//@param target: the clicked element
+//@param value: text of the clicked element
 function renderPartial(value) {
 
 	var json = {
-		'render': value
+		'route': value
 	}
 
 	$.ajax({
@@ -22,6 +24,7 @@ function renderPartial(value) {
 		$('title').html(value)
 		$('.container').html(data)
 
+		//Add onclick event to tne news
 		$('.new').on('click', function() {
 			renderNew($(this).text())
 		})

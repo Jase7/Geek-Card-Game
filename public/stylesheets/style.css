@@ -43,9 +43,6 @@ a {
 	align-items: flex-start;
 }
 
-.options a {
-	cursor: pointer;
-}
 .skew {
 	background-color: #FEC23E;
 	padding: 0;
@@ -62,12 +59,12 @@ a {
 .options li {
 	display: flex;
 	flex:auto;
-
 }
 
 .options a {
-	flex: auto;
+	cursor: pointer;
 	display: flex;
+	flex: auto;
 	justify-content: center;
 	padding: 0.3em 0;
 }
@@ -76,7 +73,6 @@ a {
 	flex: 1 1 40%;
 	justify-content: flex-start;
 }
-
 
 .optionsRight {
 	flex: 1 1 40%;
@@ -154,10 +150,6 @@ a {
 		transition: all .5s;
 	}
 	
-	.menu {
-		color: white !important;
-	}
-	
 	.menu.mostrar-menu {
 		left: 0;
 	}
@@ -194,6 +186,10 @@ a {
 		text-indent: 1em !important;
 		line-height: 3 !important;
     	height: 100% !important;
+	}
+
+	.options a {
+		color: white;
 	}
 
 	.toggleMenu {

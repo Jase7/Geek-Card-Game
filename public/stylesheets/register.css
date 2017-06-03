@@ -44,7 +44,7 @@ body {
 	border-bottom: 1px solid #aaa;
 }
 
-.isUserValid {
+.isUserValid, .isEmailValid {
 	bottom: 0;
 	display: none;
 	flex: 1 1 5%;

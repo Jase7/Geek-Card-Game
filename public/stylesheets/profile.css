@@ -2,11 +2,81 @@ body {
 	min-height: 100vh;
 }
 
-.container {
-	background-color: rgba(40,43,48,.6);
-	width: 80%;
+form {
+	display: block;
+	margin: 1em;
+}
+
+input {
+	color: #eee;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #333;
+	font-size: 1.1em;
+}
+
+button {
+	font-size: 1.1em;
+}
+
+.stats h1 {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+.match-header {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	color: white;
+	display: table;
+	font-size: 1em;
+	font-family: 'Roboto', sans-serif;
 	margin: 0 auto;
-	margin-top: 2em;
-	border-radius: 10px;
-	height: 100%;
+	width: 90%;
+}
+
+.match-row {
+	display: table-row;
+}
+
+.seed, .turns, .cennitPoints, .blnVictory {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	display: table-cell;
+	text-align: center;
+	padding: 1em 0;
+	width: 25%;
+}
+
+.blnVictory img {
+	max-width: 15%;
+	width: 100%;
+}
+
+.userOptions h1 {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+.userOptions {
+	font-size: 1em;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
+
+.userOptions label {
+	color: #eee;
+	display: inline-block;
+	min-width: 12.5%;
+	max-width: 12.5%;
+	text-align: left;
+	width: 100%;
+}
+
+.formChangePassword, .formChangeEmail {
+	margin: 0 auto;
+}
+
+.buttonsUser {
+	margin-top: 1em;
 }

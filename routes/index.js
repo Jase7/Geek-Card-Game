@@ -10,28 +10,38 @@ var functions = require('../functions');
 router.get('/', function(req, res, next) {
 
 	//If the cookies are setted
-	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
+	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_'] && req.cookies['codUser'] && req.cookies['isActive']) {
 
-		//Handling the cookie is the correct 
-		functions.getSessionID(req.cookies['user'], function(result) {
+		if(req.cookies['isActive'] == 'active') {
 
-			var sesion = result;
+			//Handling the cookie is the correct 
+			functions.getSessionID(req.cookies['user'], function(result) {
 
-			//If it's the same, you have access to the page
-			if (req.cookies['userID_'] == sesion) {
+				console.log(result)
+				console.log(req.cookies['userID_'])
 
-				//Let's pass the news to the view
-				functions.getNews(function(news) {
+				var sesion = result;
 
-					res.render('index', { });					
-				})
-			}
+				//If it's the same, you have access to the page
+				if (req.cookies['userID_'] == sesion) {
 
-			//If doesn't you have to log in again
-			else {
-				res.redirect('/');
-			}
-		});	
+					//Let's pass the news to the view
+					functions.getNews(function(news) {
+
+						res.render('index', { });					
+					})
+				}
+
+				//If doesn't you have to log in again
+				else {
+					res.redirect('/');
+				}
+			});	
+		}
+
+		else {
+			res.render('inactive');
+		}
 	} 
 
 	//There aren't no cookies but there are ssessions

@@ -13,7 +13,7 @@ $(document).ready(function() {
         }
     });
 
-    /* Let's check if user and email are available */
+    /* Let's check if user are available */
     $('input[name=user]').keyup(function(event) {
 
         if($(this).val().length == 0) {
@@ -42,11 +42,38 @@ $(document).ready(function() {
             })
             .fail(function(err) {
                 console.log(err);
-            });
+            });//end AJAX call
+        }        
+    });
 
+    //Check if the mail is used
+    $('input[name=email]').on('keyup', function() {
+
+        if($(this).val().length == 0) {
+            $('.isEmailValid').css('display', 'none');
         }
 
-        
-        
-    });    
+        if ($(this).val().length >= 4) {
+
+            $.ajax({
+            url: '/api/checkMail',
+            type: 'POST',
+            data: $('form').serialize(),
+            success: function(data) {
+                if(data === 'valid') {
+                    $('.isEmailValid').css('display', "inline-block");
+                    $('.isEmailValid').html('<i class="icon-valid" aria-hidden="true" title="Disponible"></i>');
+                }
+
+                else if(data === 'invalid') {
+                    $('.isEmailValid').css('display', "inline-block");
+                    $('.isEmailValid').html('<i class="icon-invalid" aria-hidden="true" title="No disponible"></i>');
+                }
+            },
+            error: function(err) {
+                console.log(err)
+            }
+            }); //end AJAX call
+        }        
+    })
 })

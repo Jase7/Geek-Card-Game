@@ -1,6 +1,6 @@
 <% for (var i = 0; i < news.length; i++) { %>
 
-	<a class="new">
+	<a class="new" data-title="<%= news[i].title %>">
 		<article class="new-container">
 			<div class="new-img">
 				<img src="<%= news[i].imgUrl %>" alt="new" />

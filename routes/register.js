@@ -60,13 +60,12 @@ router.post('/', function(req, res, next) {
 	var user = req.sanitize(req.body.user);
 	var email = req.sanitize(req.body.email);
 	var pass = req.sanitize(req.body.pass);
-	var currentTime = new Date();
 	var hashLogin = hash.generate(Math.random().toString(36).substring(50));
 	hashLogin = hashLogin.substr(hashLogin.lastIndexOf('$') + 1)
 
 	bcrypt.hash(pass, null, null, function(err, hash) {
 
-		var query = connection.query('INSERT INTO users (strUsername, strEmail, strPassword, datRegisterDate, strRegisterHash) VALUES(?, ?, ?, NOW(), ?)'
+		var query = connection.query('INSERT INTO users (strUsername, strEmail, strPassword, datRegisterDate, strRegisterHash, hashLogin, isAdmin, is_active) VALUES(?, ?, ?, NOW(), ?, NULL, "no-admin", "inactive")'
 		, [user, email, hash, hashLogin]
 
 		, function(error, result){
@@ -81,8 +80,8 @@ router.post('/', function(req, res, next) {
 					    port: 25,
 					    secure: false, // use SSL 
 					    auth: {
-					        user: 'info',
-					        pass: 'infoNemobot1243'
+					        user: 'root',
+					        pass: 'Nemobot1243'
 					  	},
 					  	authMethod: 'LOGIN',
 					    tls: {
@@ -101,7 +100,7 @@ router.post('/', function(req, res, next) {
 					    text: 'Geek Card Game', // plaintext body 
 					    html: '<b>Te has registrado en Geek Card Game :)</b>' +
 					    		'<div>Para verificar que no eres un bot necesitamos que ingreses en este link, si no lo haces tu cuenta permanecerá inactiva y no podrás acceder:' +
-					    		'<a href="http://geekcardgame.com/validate/' + user + "/" + hashLogin + '">Validar cuenta</a>' +
+					    		'<a href="https://geekcardgame.com/validate/' + user + "/" + hashLogin + '">Validar cuenta</a>' +
 					    		'</div>' // html body 
 					};
 

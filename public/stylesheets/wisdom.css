@@ -1,0 +1,40 @@
+.container {
+	display: flex;
+	margin: 0 auto;
+	margin-top: 1.5em;
+	width: 97.5%;
+}
+
+.wisdomMenu {
+	font-family: 'Roboto', sans-serif;
+	flex: 0 0 25%;
+}
+
+.wisdomMenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wisdomMenu ul li {
+	background-color: #FEC23E;
+	border: 2px solid #000;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1.2em;
+	margin: .5em;
+	padding: 1em;
+}
+
+.textContainer {
+	background-color: white;
+	box-sizing: border-box;
+	flex: 0 0 75%;
+	padding: 1em;
+	overflow-y: scroll;
+	max-height: 70vh;
+}
+
+.findepartida, .movimiento {
+	display: none;
+}

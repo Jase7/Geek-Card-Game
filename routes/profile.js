@@ -1,42 +1,36 @@
 var express = require('express');
 var router = express.Router();
-var functions = require('../functions');
+var config = require('../config');
+var mysql = require('mysql');
 
 /* GET profile page. */
 router.get('/', function(req, res) {
 
-	//If the cookies are setted
-	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_']) {
+	//Sacamos el usuario 
+	var codUser = req.session.codUser || req.cookies['codUser'];
 
-		//Handling the cookie is the correct 
-		functions.getSessionID(req.cookies['user'], function(result) {
+	var connection = mysql.createConnection({	
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		database: config.database,
+		port: config.port
+	});
+	
+	connection.query('SELECT intSeed, intTurns, cennitPoints, blnVictory FROM history WHERE codUser = (?) LIMIT 5;'
+	 	,[codUser], function(error, result) {
 
-			var sesion = result;
+	 		if (error) {
+	 			console.log(error)
+	 			res.render('error', {message: error})
+	 		} 
+	 		else {
+	 			console.log(result)
+	 			res.render('profile', { stats: result }) 
+	 		}
+	})
 
-			//If it's the same, you have access to the page
-			if (req.cookies['userID_'] == sesion) {
-
-				res.render('profile', { user: req.cookies['user']});				
-			}
-
-			//If doesn't you have to log in again
-			else {
-				res.redirect('/');
-			}
-		});	
-	} 
-
-	//There aren't no cookies but there are ssessions
-	else if (req.session.user && req.session.admin && req.session.userID) {
-
-		res.render('profile', { user: req.session.user})
-	}
-
-	//You're not logged in
-	else {
-		res.redirect('/');
-	}    		
-});
-
+	connection.end()
+})
 
 module.exports = router;

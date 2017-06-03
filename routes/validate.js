@@ -16,16 +16,16 @@ router.get('/:user/:hash', function(req, res, next) {
 	var user = req.params.user;
 	var hash = req.params.hash
 
-	connection.query('SELECT hashLogin from users WHERE strUsername = (?) AND strHashLogin = (?)',
+	connection.query('SELECT strRegisterHash from users WHERE strUsername = (?) AND strRegisterHash = (?)',
 		[user, hash], function(err, result) {
 
-			if (error) {
+			if (err) {
 				return res.send(err);
 			}
 
 			else if (result.length > 0) {
 
-				connection.query('UPDATE users SET is_active = "true" WHERE strUsername = (?)'
+				connection.query('UPDATE users SET is_active = "active", strRegisterHash = NULL WHERE strUsername = (?)'
 					,[user], function(err, result) {
 
 						if (err) {
@@ -33,6 +33,14 @@ router.get('/:user/:hash', function(req, res, next) {
 						}
 
 						else {
+
+							//Destroy the cookies
+							res.clearCookie('userID_', {path: '/'});
+							res.clearCookie('user', {path: '/'});
+							res.clearCookie('is_admin', {path: '/'});
+							res.clearCookie('codUser' , {path: '/'});
+							res.clearCookie('isActive', {path: '/'});
+							
 							res.redirect('/');
 						}
 				})

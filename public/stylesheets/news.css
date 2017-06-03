@@ -6,19 +6,26 @@ body {
 }
 
 .container {
-	margin: 2em 0 0 0;
-	width: 90%;
-	opacity: .9;
-	font-family: "Roboto";
 	color: white;
-	font-size: 1em;
 	display: flex;
+	flex-wrap: wrap;
+	font-family: "Roboto";
+	font-size: 1em;
+	margin: 2em 0 0 0;
+	opacity: .9;
+	width: 90%;
+}
+
+.new {
+	cursor: pointer;
+	display: flex;
+	flex-basis: calc(50% - 1em);
+	flex-grow: 0;
+	flex-shrink: 1;
+	margin: .5em;
 }
 
 .new-container {
-	flex-basis: auto;
-	display: flex;
-	margin: 0 .5em;
 	height: 100%;
 }
 
@@ -36,7 +43,7 @@ body {
 .new-img img {
 	width: 100%;
 	height: 100%;
-	transitioN: all .5 ease;
+	transition: all .5s ease;
 }
 
 .new-img .new-content {

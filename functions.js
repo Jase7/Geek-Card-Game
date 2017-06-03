@@ -11,7 +11,7 @@ exports.getSessionID = function (user, callback) {
 			port: config.port
 		});
 
-		connection.query('SELECT is_active FROM users WHERE strUsername = (?)'
+		connection.query('SELECT hashLogin FROM users WHERE strUsername = (?)'
 			,[user] , function(error, result) {
 
 				if (error) {
@@ -22,7 +22,7 @@ exports.getSessionID = function (user, callback) {
 
 					if (result.length == 1) {
 
-						var resultado = result[0].is_active
+						var resultado = result[0].hashLogin
 
 						callback(resultado);
 					}
@@ -43,7 +43,7 @@ exports.saveIsActive = function(session_id, user) {
 			port: config.port
 		});
 
-		var query = connection.query('UPDATE users SET is_active = (?) WHERE strUsername = (?)'
+		var query = connection.query('UPDATE users SET hashLogin = (?) WHERE strUsername = (?)'
 			, [session_id, user]
 
 			, function(error, result) {

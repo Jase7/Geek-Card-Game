@@ -9,28 +9,35 @@ var functions = require('../functions');
 router.get('/', function(req, res, next) {
 	
 	//If the cookies are setted
-	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_'] && req.cookies['codUser']) {
+	if (req.cookies['user'] && req.cookies['is_admin'] && req.cookies['userID_'] && req.cookies['codUser'] && req.cookies['isActive']) {
 
-		//Handling the cookie is the correct 
-		functions.getSessionID(req.cookies['user'], function(result) {
+		if (req.cookies['isActive'] == 'active') {
+			
+			//Handling the cookie is the correct 
+			functions.getSessionID(req.cookies['user'], function(result) {
 
-			var sesion = result;
+				var sesion = result;
 
-			//If it's the same, you have access to the page
-			if (req.cookies['userID_'] == sesion) {
+				//If it's the same, you have access to the page
+				if (req.cookies['userID_'] == sesion) {
 
-				res.redirect('/')				
-			}
+					res.redirect('/')				
+				}
 
-			//If doesn't you have to log in again
-			else {
-				res.render('login');
-			}
-		});
+				//If doesn't you have to log in again
+				else {
+					res.render('login');
+				}
+			});
+		}
+
+		else {
+			res.send("Tu cuenta todavía no ha sido activada")
+		}
 	} 
 
 	//There aren't no cookies but there are session
-	else if (req.session.user && req.session.admin && req.session.userID) {
+	else if (req.session.user && req.session.admin && req.session.userID && req.session.codUser) {
 
 		res.redirect('/')
 	}
@@ -38,7 +45,9 @@ router.get('/', function(req, res, next) {
 	//You're not logged in
 	else {
 		res.render('login');
-	}	
+	}
+
+		
 });
 
 /* POST login page. */
@@ -113,6 +122,13 @@ router.post('/', function(req, res) {
 										maxAge: 30 * 24 * 60 * 60 * 1000
 										,httpOnly: true
 
+									})
+
+									res.cookie('isActive', result[0].is_active, {
+
+										maxAge: 30 * 24 * 60 * 60 * 1000
+										, httpOnly: true 
+
 									}).redirect('/');
 
 								}
@@ -123,6 +139,7 @@ router.post('/', function(req, res) {
 									req.session.user = user; //save the username
 									req.session.admin = result[0].isAdmin; //save if user is admin or not
 									req.session.codUser = result[0].id; //save the ID of the user
+									req.session.is_active = result[0].isActive; //save if is active or not
 
 									res.redirect('/');
 								}
