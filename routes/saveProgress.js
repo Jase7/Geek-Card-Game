@@ -68,7 +68,7 @@ router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 			//Update progress
 			if (seed > 0) {
 
-				connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(points) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
+				connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(cennitPoints) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
 					,[seed, codUser, codUser]), function(error, result) {
 
 					if (error) {
