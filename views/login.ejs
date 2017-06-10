@@ -52,38 +52,7 @@
 			<% } %>
 		</form>
 
-		<a href="/register">¿Aún no tienes cuenta? ¡Regístrate!</a>
-
-		<div class="resetPassword">¿Has perdido tu contraseña?</div>
-		<div class="formResetPassword">
-
-			<form action="/resetPassword" method="POST">
-
-				<div class="inputBlock">
-					<label for="resetAccount">Introduce el usuario o el email de tu cuenta</label>
-					<input type="text" name="resetAccount" id="resetAccount" placeholder="Usuario o email" required>
-				</div>
-
-				<div class="inputBlock">
-					<label for="resetPassword">Introduce la nueva contraseña</label>
-					<input type="text" name="resetPassword" id="resetPassword" placeholder="Nueva contraseña" required>
-				</div>
-
-				<div class="inputBlock">
-					<input type="submit" value="Establecer nueva contraseña">
-				</div>
-
-			</form>
-
-		</div>
-
-		<script>
-			$('.resetPassword').on('click', function() {
-				$('.formResetPassword').toggle();
-			})
-		</script>
-
-	</div>	
+	</div>
 </div>
 </body>
 </html>

@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 
-	var codUser = req.cookies['codUser'] || req.session.codUser;
+	var codUser = req.cookies["codUser"] || req.session.codUser;
 	var seed = req.params.arg0;
 	var status = req.params.arg1;
 	var points = req.params.arg2;
@@ -54,32 +54,33 @@ router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 		port: config.port
 	})
 
-	var query = "INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (" + codUser + ", " + seed + " , '" + status + "' , " + points + " , " + inTurns + ");"
-
-
 	//Create new register of plays
-	connection.query("INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, '?', ?, ?)"
+	connection.query("INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, ?, ?, ?)"
 		,[codUser, seed, status, points, intTurns]
 		, function(error, result) {
 
 			if (error) {
 				console.log(error)
-				res.send(query)
+				res.send(error)
+			}
+
+			else {
+				res.send(result)
 			}
 		})
 
-			// //Update progress
-			// if (seed > 0) {
+			//Update progress
+			if (seed > 0) {
 
-			// 	connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(cennitPoints) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
-			// 		,[seed, codUser, codUser]), function(error, result) {
+				connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(cennitPoints) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
+					,[seed, codUser, codUser]), function(error, result) {
 
-			// 		if (error) {
-			// 			console.log(error)
-			// 			res.send(error)
-			// 		}
-			// 	}	
-			// }
+					if (error) {
+						console.log(error)
+						res.send(error)
+					}
+				}	
+			}
 
 			// else if (seed <= 0) {
 
