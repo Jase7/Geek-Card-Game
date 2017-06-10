@@ -37,12 +37,13 @@ router.get('/', function(req, res, next) {
 })
 
 
-router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
+router.post('/:arg0/:arg1/:arg2/:arg3/:arg4', function(req, res, next){
 
 	var level = req.params.arg0;
 	var seed = req.params.arg1;
 	var status = req.params.arg2;
 	var points = req.params.arg3;
+	var intTurns = req.params.arg4;
 	var codUser = req.cookies['codUser'] || req.session.codUser;
 
 	var connection = mysql.createConnection({
@@ -55,8 +56,8 @@ router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 	})
 
 	//Create new register of plays
-	connection.query('INSERT INTO history (codUser, levelSeed, blnVictory, points) VALUES (?, ?, ?, ?)'
-		,[codUser, seed, status, points]
+	connection.query('INSERT INTO history (codUser, levelSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, ?, ?, ?)'
+		,[codUser, seed, status, points, intTurns]
 		, function(error, result) {
 
 			if (error) {
