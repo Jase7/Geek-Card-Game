@@ -54,29 +54,32 @@ router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 		port: config.port
 	})
 
+	var query = "INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (" + codUser + ", " + seed + " , '" + status + "' , " + points + " , " + inTurns + ");"
+
+
 	//Create new register of plays
-	connection.query("INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, ?, '?', ?)"
+	connection.query("INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, '?', ?, ?)"
 		,[codUser, seed, status, points, intTurns]
 		, function(error, result) {
 
 			if (error) {
 				console.log(error)
-				res.send(error)
+				res.send(query)
 			}
 		})
 
-			//Update progress
-			if (seed > 0) {
+			// //Update progress
+			// if (seed > 0) {
 
-				connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(cennitPoints) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
-					,[seed, codUser, codUser]), function(error, result) {
+			// 	connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(cennitPoints) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
+			// 		,[seed, codUser, codUser]), function(error, result) {
 
-					if (error) {
-						console.log(error)
-						res.send(error)
-					}
-				}	
-			}
+			// 		if (error) {
+			// 			console.log(error)
+			// 			res.send(error)
+			// 		}
+			// 	}	
+			// }
 
 			// else if (seed <= 0) {
 
