@@ -37,14 +37,13 @@ router.get('/', function(req, res, next) {
 })
 
 
-router.post('/:arg0/:arg1/:arg2/:arg3/:arg4', function(req, res, next){
+router.post('/:arg0/:arg1/:arg2/:arg3', function(req, res, next){
 
-	var level = req.params.arg0;
-	var seed = req.params.arg1;
-	var status = req.params.arg2;
-	var points = req.params.arg3;
-	var intTurns = req.params.arg4;
 	var codUser = req.cookies['codUser'] || req.session.codUser;
+	var seed = req.params.arg0;
+	var status = req.params.arg1;
+	var points = req.params.arg2;
+	var intTurns = req.params.arg3;
 
 	var connection = mysql.createConnection({
 
@@ -66,30 +65,30 @@ router.post('/:arg0/:arg1/:arg2/:arg3/:arg4', function(req, res, next){
 			}
 		})
 
-	//Update progress
-	if (level > 0) {
+			//Update progress
+			if (seed > 0) {
 
-		connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(points) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
-			,[level, codUser, codUser]), function(error, result) {
+				connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(points) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
+					,[seed, codUser, codUser]), function(error, result) {
 
-			if (error) {
-				console.log(error)
-				res.send(error)
+					if (error) {
+						console.log(error)
+						res.send(error)
+					}
+				}	
 			}
-		}	
-	}
 
-	else if (level <= 0) {
+			// else if (seed <= 0) {
 
-		connection.query('UPDATE progress SET cennitPoints = (SELECT SUM(points) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
-			, [codUser, codUser], function(error, result) {
+			// 	connection.query('UPDATE progress SET maxLevel = (?), cennitPoints = (SELECT SUM(points) FROM history WHERE codUser = (?)) WHERE codUser = (?)'
+			// 		, [seed, codUser, codUser], function(error, result) {
 
-				if (error) {
-					console.log(error)
-					res.send(error)
-				}
-		})
-	}
+			// 			if (error) {
+			// 				console.log(error)
+			// 				res.send(error)
+			// 			}
+			// 	})
+			// }
 
 	connection.end()
 	
