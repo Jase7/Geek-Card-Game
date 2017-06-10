@@ -16,9 +16,9 @@ router.get('/', function(req, res, next) {
 		database: config.database
 	})
 
-	connection.query('SELECT u.strUsername as name,'+
+	connection.query('SELECT u.strUsername as name, '+
 						'p.maxLevel as maxLevel, ' + 
-						'p.cennitPoints as cennitPoints' +
+						'p.cennitPoints as cennitPoints ' +
 						'FROM progress p ' + 
 						'INNER JOIN users u ' + 
 						'ON p.codUser = u.id ' +

@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
 
 	//Sacamos el usuario 
 	var codUser = req.session.codUser || req.cookies['codUser'];
+	console.log(codUser)
 
 	var connection = mysql.createConnection({	
 		host: config.host,
