@@ -16,7 +16,13 @@ router.get('/', function(req, res, next) {
 		database: config.database
 	})
 
-	connection.query('SELECT * FROM progress WHERE codUser = (?)'
+	connection.query('SELECT u.strUsername as name,'+
+						'p.maxLevel as maxLevel, ' + 
+						'p.cennitPoints as cennitPoints' +
+						'FROM progress p ' + 
+						'INNER JOIN users u ' + 
+						'ON p.codUser = u.id ' +
+						'WHERE p.codUser = (?)'
 		,[codUser] ,function(error, result) {
 			if(error) {
 				console.log(error)
