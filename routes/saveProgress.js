@@ -56,7 +56,7 @@ router.post('/:arg0/:arg1/:arg2/:arg3/:arg4', function(req, res, next){
 	})
 
 	//Create new register of plays
-	connection.query('INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, ?, "?", ?)'
+	connection.query("INSERT INTO history (codUser, intSeed, blnVictory, cennitPoints, intTurns) VALUES (?, ?, ?, '?', ?)"
 		,[codUser, seed, status, points, intTurns]
 		, function(error, result) {
 
