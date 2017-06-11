@@ -50,9 +50,9 @@ module.exports = router;
 router.post('/', function(req, res, next) {
 
 	var connection = mysql.createConnection({
-		host: config.hostname,
+		host: config.host,
 		user: config.user,
-		password: config.pass,
+		password: config.password,
 		database: config.database,
 		port: config.port
 	});

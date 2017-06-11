@@ -8,7 +8,6 @@ router.get('/', function(req, res) {
 
 	//Sacamos el usuario 
 	var codUser = req.session.codUser || req.cookies['codUser'];
-	console.log(codUser)
 
 	var connection = mysql.createConnection({	
 		host: config.host,
@@ -26,7 +25,6 @@ router.get('/', function(req, res) {
 	 			res.render('error', {message: error})
 	 		} 
 	 		else {
-	 			console.log(result)
 	 			res.render('profile', { stats: result }) 
 	 		}
 	})

@@ -38,3 +38,19 @@
 .findepartida, .movimiento {
 	display: none;
 }
+
+/* ESTILOS BLOQUES*/
+.textContainer {
+	font-family: 'Roboto', sans-serif;
+	text-align: justify;
+}
+
+.textContainer h1 {
+	font-family: 'Open Sans', Tahoma;
+	text-align: center;
+}
+
+.textContainer img {
+	margin: 1em 0;
+	width: 50%;
+}
