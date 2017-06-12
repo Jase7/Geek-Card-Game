@@ -25,6 +25,7 @@ router.get('/', function(req, res) {
 	 			res.render('error', {message: error})
 	 		} 
 	 		else {
+	 			console.log(result)
 	 			res.render('profile', { stats: result }) 
 	 		}
 	})
