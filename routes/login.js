@@ -32,8 +32,8 @@ router.get('/', function(req, res, next) {
 		}
 
 		else {
-			let message = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
-			res.render('inactive', {message: message});		}
+			let msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			res.render('inactive', {message: msg});		}
 	} 
 
 	//There aren't no cookies but there are session
@@ -45,8 +45,8 @@ router.get('/', function(req, res, next) {
 		}
 
 		else {
-			let message = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
-			res.render('inactive', {message: message});
+			let msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			res.render('inactive', {message: msg});
 
 		}
 		
