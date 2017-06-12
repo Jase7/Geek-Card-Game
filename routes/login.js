@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 		}
 
 		else {
-			let msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			var msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
 			res.render('inactive', {message: msg});		}
 	} 
 
@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
 		}
 
 		else {
-			let msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			var msg = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
 			res.render('inactive', {message: msg});
 
 		}
