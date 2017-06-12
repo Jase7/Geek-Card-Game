@@ -35,7 +35,7 @@
 	max-height: 70vh;
 }
 
-.findepartida, .movimiento {
+.cartas, .movimiento, .enemigos, .ataque, .turnos, .findepartida {
 	display: none;
 }
 
@@ -53,4 +53,41 @@
 .textContainer img {
 	margin: 1em 0;
 	width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+
+	.container {
+		flex-wrap: wrap;
+		margin-top: 2em;
+		width: 100%;
+	}
+
+	.wisdomMenu {
+		display: flex;
+		flex: 0 0 100%;
+		margin-bottom: 1em
+	}
+
+	.wisdomMenu ul {
+		display: flex;
+		flex: 0 0 100%;
+		flex-wrap: wrap;
+	}
+
+	.wisdomMenu ul li {
+		box-sizing: border-box;
+		flex: 0 0 50%;
+		font-size: 1em;
+		margin: 0;
+	}
+
+	.textContainer {
+		flex: 0 0 100%;
+	}
+
+	.textContainer img {
+		width: 100%;
+	}
+
 }

@@ -32,14 +32,24 @@ router.get('/', function(req, res, next) {
 		}
 
 		else {
-			res.send("Tu cuenta todavía no ha sido activada")
-		}
+			let message = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			res.render('inactive', {message: message});		}
 	} 
 
 	//There aren't no cookies but there are session
-	else if (req.session.user && req.session.admin && req.session.userID && req.session.codUser) {
+	else if (req.session.user && req.session.admin && req.session.userID && req.session.codUser && req.session.isActive) {
 
-		res.redirect('/')
+		if (req.session.isActive == 'active') {
+
+			res.redirect('/')
+		}
+
+		else {
+			let message = 'Tu cuenta todavía no ha sido activada. Sigue el enlace que hemos mandado a tu correo o contacta con info@geekcardgame.com.'
+			res.render('inactive', {message: message});
+
+		}
+		
 	}
 
 	//You're not logged in
@@ -139,7 +149,7 @@ router.post('/', function(req, res) {
 									req.session.user = user; //save the username
 									req.session.admin = result[0].isAdmin; //save if user is admin or not
 									req.session.codUser = result[0].id; //save the ID of the user
-									req.session.is_active = result[0].isActive; //save if is active or not
+									req.session.isActive = result[0].isActive; //save if is active or not
 
 									res.redirect('/');
 								}

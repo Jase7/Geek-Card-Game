@@ -29,7 +29,7 @@ a {
 .menu {
 	display: flex;
 	padding: 0 2em;
-	background: url('/images/web/background.png') no-repeat center center;
+	background: url('/images/web/geekcardgame-background.png') no-repeat center center;
 	background-size: 100% 100%;
 	box-sizing: border-box;
 	font-family: 'Roboto', sans-serif;
@@ -110,7 +110,7 @@ a {
 
 
 .divPlay {
-	background: url('/images/web/button_play.png') no-repeat center center;
+	background: url('/images/web/geekcardgame-button_play.png') no-repeat center center;
 	background-size: 100% 100%;
 	width: 80%;
 	display: flex;
@@ -128,11 +128,38 @@ a {
 	display: none;
 }
 
+/* bg */
+.bg-blur {
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	display: block;
+	background-image: url('/images/web/geekcardgame-page-background.jpg');
+	background-size: contain;
+	background-attachment: fixed;
+	width: 100vw;
+	min-height: 100vh;
+	height:110vh;
+
+
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+}
 
 /* media queries responsive */
 
 /* breakpoint web*/
 @media screen and (max-width: 768px) {
+
+	a {
+		color: white;
+		cursor: pointer;
+	}
 
 	/* Reset the menu */
 	.menu {
@@ -189,7 +216,7 @@ a {
 	}
 
 	.options a {
-		color: white;
+		color: white !important;
 	}
 
 	.toggleMenu {

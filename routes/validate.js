@@ -40,6 +40,9 @@ router.get('/:user/:hash', function(req, res, next) {
 							res.clearCookie('is_admin', {path: '/'});
 							res.clearCookie('codUser' , {path: '/'});
 							res.clearCookie('isActive', {path: '/'});
+
+							//And destroy the session						
+							req.session.destroy();
 							
 							res.redirect('/');
 						}

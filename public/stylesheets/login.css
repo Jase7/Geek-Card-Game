@@ -33,7 +33,7 @@ input[type=text], input[type=password] {
 	right: 0;
 	z-index: 1;
 	display: block;
-	background-image: url('/images/web/page-background.jpg');
+	background-image: url('/images/web/geekcardgame-page-background.jpg');
 	background-size: cover;
 	width: 100vw;
 	height: 100vh;
@@ -78,16 +78,17 @@ input[type=text], input[type=password] {
 }
 
 .inputBlock {
-	margin: 1.5vw 0;
+	margin: 1.5em 0;
 }
 
 .inputBlock span {
 	color: #ddd;
+	vertical-align: top;
 }
 
 .btnLogin input {
 	border: none;
-	background: url('/images/web/button_play.png') no-repeat center center;
+	background: url('/images/web/geekcardgame-button_play.png') no-repeat center center;
 	cursor: pointer;
 	background-size: cover;
 	padding: 1vw 3vw;
@@ -115,6 +116,7 @@ input[type=text], input[type=password] {
 	display: inline-block;
 	box-shadow: 0 0 0 2px #999 inset;
 	cursor: pointer;
+	margin: 0;
 	margin-left: .5em;
 	transition: all .2s;
 
@@ -137,17 +139,6 @@ input[type=text], input[type=password] {
 
 #remember:checked + .remember:before {
 	left: 1.5em;
-}
-
-.resetPassword {
-	color: #ddd;
-	cursor: pointer;
-	font-size: 1.2em;
-	margin: 1em 0;
-}
-
-.formResetPassword {
-	display: none;
 }
 
 /* media queries responsive login */
